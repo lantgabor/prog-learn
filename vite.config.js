@@ -1,8 +1,7 @@
-/**
- * @type {import('vite').UserConfig}
- *
- */
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-export default {
-  base: process.env.NODE_ENV === "production" ? "/prog-learn/" : "/",
-};
+export default defineConfig({
+  base: process.env.NODE_ENV === "production" ? "/prog-learn" : "/",
+  plugins: [react()],
+});
