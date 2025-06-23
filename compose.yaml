@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  node:
+    image: node:latest
+    command: npx vite dev --host
+    volumes:
+      - ${PWD}:/work
+    working_dir: /work
+    ports:
+      - "5173:5173"
