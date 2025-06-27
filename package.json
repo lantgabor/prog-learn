@@ -12,6 +12,8 @@
   "dependencies": {
     "@mdx-js/react": "^3.1.0",
     "@mdx-js/rollup": "^3.1.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "daisyui": "^5.0.43",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.2",
@@ -19,6 +21,7 @@
     "rehype-starry-night": "^2.2.0",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
+    "tailwindcss": "^4.1.11",
     "three": "^0.177.0"
   },
   "devDependencies": {

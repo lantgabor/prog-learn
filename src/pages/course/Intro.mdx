@@ -1,1 +1,142 @@
-# Introduction to Programming with JavaScript
+import img from "./flowchart.png"
+
+# Mi az a programozás
+
+Mit lehet vele csinálni?
+
+Hol használjuk, hol találkozol vele?
+
+**Mit nevezünk számítógépnek?** 
+1. laptop?
+2. telefon?
+3. Tv?
+4. Hűtő?
+5. Hajvasaló?
+
+Nem csak az amin Windows vagy hasonló van.
+
+---
+
+**Mit csinálnak a számítógépek?**
+
+Feladatokat oldanak meg. Hogyan?
+
+Ahogyan az emberek is képesek feladatokat megoldani. Utasításokat követve. 
+
+**Mit nevezünk utasításnak?**
+
+Például amikor valamire rákeresel az interneten vagy játszol a telefonodon ilyenkor utasításokat adsz a számítógépednek.
+
+**Mi történik akkor ezt csinálod?** -- pontosan nem is kell tudni.
+
+---
+
+**Miért akarjunk megtanulni programozni?** hogy az ötleteinkből valóság legyen. A programozás hasonló a festéshez vagy a szereléshez.
+
+## Mit fogunk vele mi csinálni?
+
+-- flappy bird? genshin impact?
+
+Pár óra mulva már akár ide is eljutunk
+
+Hogyan tudod használni a mindennapokban
+
+## Mit fogunk tanulni?
+
+**Python**? Mi az a python
+
+Mik azok a programozási nyelvek?
+
+## Python telepítése
+
+Hogyan kell windowson telepíteni
+
+## Hogyan kapcsolódoik a matematika a programozáshoz?
+
+Tudás fajtái? A tudást alapvetően kétféleképpen csoportosítjuk.
+
+| Deklaratív                                                                                         | Imperatív                                                                                                         |
+| -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| "Mi az ami igaz?" - Állításokat teszünk                                                            | "Hogyan kell csinálni?" - Módszereket adunk meg                                                                   |
+| $$x$$ gyöke egy olyan $$y$$, amire $$y^2=x$$ és $$ y \geq 0$$                                      | Tippeljük meg, mennyi: $$y'$$. A tipp javítható: $$(y'+x/y')/2$$ Javítgassuk, amíg nem elég jó.                   |
+| Megmondjuk a gépnek milyenek a helyes megoldások és ő majd kitalálja hogyan kell ezeket megtalálni | Lépésről lépsre megmondjuk mit kell tennie a gépnek                                                               |
+| Például egy szöveges matek feladat. Keressük meg az összes megoldását az egyenletnek.              | Lépésről lépésre, hogyan számoljuk ki a mennyi ideig tart a vasúti kocsinak lefékezni egy adott sebesség mellett. |
+
+
+---
+
+## Algoritmusok
+
+Módszer, utasítás a feladat megoldására. Lépések sorozata
+
+- Megengedett utasítások
+- Mindig egyértelmű
+- Véges sok lépésből áll
+
+--- 
+
+## Példa
+
+Mit kell tenni, ha nem kapcsol fel a lámpa.
+
+<img src="/flowchart.png" alt="Logo" />
+
+Egy szám számjegyeinek összege.
+
+**Hogyan tudunk leírni egy algoritmust?**
+
+1. Beszélt nyelvi leírás (pszeudokód)
+2. Folyamatábra
+
+## Pszeudokód
+
+```rs
+Be: szam
+osszeg = 0
+
+Amíg szam > 0:
+    osszeg += szam % 10
+    szam /= 10
+    
+Ki: "A megadott szám számjegyeinek összege: " + osszeg
+```
+---
+
+## A programkód
+
+- A számítógép ezt érti. Programozási nyelven írjuk.
+- A nyelv elemei, **szótár**
+- **Szintaxis**, nyelvtani szabályok.
+
+```python
+# legnagyobb közös osztó
+a = int(input("a? "))
+b = int(input("b? "))
+ 
+while b != 0:
+    t = b
+    b = a % b
+    a = t
+ 
+print("lnko =", a)
+```
+
+## Hello world
+
+Minden programozási nyelven elérhető a `Hello world!`
+
+```python
+print("Hello Sissy!")
+```
+```
+Hello Sissy!
+```
+
+## igen nem kérdések?
+++ bemutatkozó lap?
+mi a kedvenc tantárgyad?
+++ Visszafele feladat hogy én lekódolok valami bináris dolgot és azt visszafejtük.
+
+
+
+

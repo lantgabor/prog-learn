@@ -3,6 +3,10 @@
     src: url('/fonts/FiraCode-VariableFont_wght.ttf') format('truetype'),
 }
 
+code {
+    font-family: 'Fira Code', Menlo, Monaco, "Courier New", monospace;
+}
+
 pre {
     background: #0f1117;
     padding: 1rem;
@@ -10,7 +14,9 @@ pre {
     overflow-x: auto;
 }
 
-code {
+pre code {
+    background: #0f1117;
+    color: rgba(255, 255, 255, 0.9);
     font-family: 'Fira Code', Menlo, Monaco, "Courier New", monospace;
 }
 

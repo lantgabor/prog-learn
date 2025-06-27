@@ -11,11 +11,9 @@ function Navbar() {
   };
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
+    <nav className="d-navbar d-bg-base-100 d-shadow-sm">
+      <Link className="d-btn d-btn-ghost d-text-xl" to="/">Home</Link>
+      <ul className="d-menu d-menu-horizontal d-px-1">
         <Submenu
           title="Course"
           items={[{ label: "Introduction", path: "/course/intro" }]}
