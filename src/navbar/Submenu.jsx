@@ -4,7 +4,7 @@ import { Link } from "react-router";
 function Submenu({ title, items, isOpen, onToggle }) {
   return (
     <li onClick={onToggle}>
-      {title}
+      <Link to={items[0].path}>{title}</Link>
       {isOpen && (
         <ul>
           {items.map((item) => (
