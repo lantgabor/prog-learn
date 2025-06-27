@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-Bold-webfont.woff') format('woff');
+
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-BoldItalic-webfont.woff') format('woff');
+
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-Italic-webfont.woff') format('woff');
+
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-Light-webfont.woff') format('woff');
+
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-Medium-webfont.woff') format('woff');
+
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-MediumItalic-webfont.woff') format('woff');
+
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-Regular-webfont.woff') format('woff');
+
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('/fonts/ClearSans-Thin-webfont.woff') format('woff');
+
+    font-weight: 100;
+    font-style: normal;
+
+}
+
+/* CODE */
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/fonts/FiraCode-VariableFont_wght.ttf') format('truetype'),
+}
