@@ -17,10 +17,29 @@ html {
 }
 
 
-table,
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
 th,
 td {
-    padding: 10px;
-    border-collapse: collapse;
-    border: 1px solid;
+    border: none;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    color: aliceblue;
+    background-color: #273e68;
+}
+
+table tr:nth-child(even) {
+    background-color: #dce4fb;
+}
+
+table tr:nth-child(odd) {
+    background-color: #c8d5f0;
 }

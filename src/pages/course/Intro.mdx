@@ -132,6 +132,138 @@ print("Hello Sissy!")
 Hello Sissy!
 ```
 
+Mi is történik itt?
+
+- `print()` Kiírunk valamit
+- `"szöveg"` Karakterek, másnéven `string`, szöveges elem
+- `()` zárójel a függvény paraméterei
+
+## További nyelvi elemek
+
+### Érték adás
+
+`változó = "érték"`
+
+### 1. Aritmetikai operátorok
+
+| Operátor | Leírás            | Példa    |
+| -------- | ----------------- | -------- |
+| `+`      | Összeadás         | `a + b`  |
+| `-`      | Kivonás           | `a - b`  |
+| `*`      | Szorzás           | `a * b`  |
+| `/`      | Osztás            | `a / b`  |
+| `//`     | Egész osztás      | `a // b` |
+| `%`      | Maradék (modulus) | `a % b`  |
+| `**`     | Hatványozás       | `a ** b` |
+
+
+### 2. Összehasonlító operátorok
+
+| Operátor | Leírás               | Példa    |
+| -------- | -------------------- | -------- |
+| `==`     | Egyenlő              | `a == b` |
+| `!=`     | Nem egyenlő          | `a != b` |
+| `>`      | Nagyobb, mint        | `a > b`  |
+| `<`      | Kisebb, mint         | `a < b`  |
+| `>=`     | Nagyobb vagy egyenlő | `a >= b` |
+| `<=`     | Kisebb vagy egyenlő  | `a <= b` |
+
+### 4. Logikai operátorok
+
+| Operátor | Leírás       | Példa                 |
+| -------- | ------------ | --------------------- |
+| `and`    | Logikai ÉS   | `(a > 0) and (b > 0)` |
+| `or`     | Logikai VAGY | `(a > 0) or (b > 0)`  |
+| `not`    | Logikai NEM  | `not (a > 0)`         |
+
+## Típusok programozási nyelvekben
+
+Az adott adatoknak (változóknak) fajtái is vannak. Szinte minden programozási nyelvben megtalálhatóak.
+
+### 1. Számtípusok (Numeric Types)
+
+| Típus     | Leírás       | Érték    |
+| --------- | ------------ | -------- |
+| `int`     | Egész szám   | `-42`    |
+| `float`   | Valós szám   | `3.14`   |
+| `complex` | Komplex szám | `1 + 2j` |
+
+### 2. Szöveg típus (Text Type)
+
+| Típus | Leírás           | Érték     |
+| ----- | ---------------- | --------- |
+| `str` | Sztring (szöveg) | `"Hello"` |
+
+### 3. Logikai típus 
+
+| Típus  | Leírás                      | Érték  |
+| ------ | --------------------------- | ------ |
+| `bool` | Logikai érték (igaz, hamis) | `True` |
+
+Ezek fontosak lesznek az adott típusokon elvégezhető műveletek során. Matematikában is műveleteket végzünk el: P.l: összeadás, kivonás, stb.
+
+- Nyelvtani szabályok vonatkoznak rájuk
+- Értelmesnek kell lennie
+  - ```13:15 + True ``` &rarr; ???
+
+### Változó 
+
+Névvel ellátott eltárolt értékek.
+
+- Egyedi, egyszerre egy dolgot képes tárolni!
+- Számít a műveletek sorrendje!
+
+Példa
+
+### Definíció
+
+```python
+ez_egy_valtozo = 1 # értéke 1 (egész szám)
+masik_valtozo = "húsleves" # értéke szöveg (string)
+hosszu_ez_a_nap = True # értéke logikai igaz (bool)
+```
+
+### Értékadás
+
+```python
+
+kedvenc_szamom = 3 # létrehozzuk
+kedvenc_szamom = kedvenc_szamom + 2 # módosítjuk
+```
+
+- Sorrendiség számít!
+- Műveletek sorrendje számít!
+
+### Feladat
+
+Írjunk egy programot, amely kiszámítja egy henger kör alapjának területét a megadott sugár alapján. A program kérje be a felhasználótól a sugár értékét, majd kérje meg a felhasználót, hogy adja meg a szerinte helyes területet 2 tizedesjegy pontossággal.
+
+Ezután a program ellenőrizze, hogy a megadott válasz helyes-e, és adjon visszajelzést:
+- ✅ Helyes válasz esetén gratuláljon.
+- ❌ Rossz válasz esetén írja ki a helyes megoldást.
+
+A kör területe:
+$$A = \pi \times r^2 \\$$
+
+Ahol $$A$$ = terület $$r$$ = sugár $$\pi \approx 3.14$$
+
+
+```python
+print("Kör alapú henger alap területe")
+
+r = int(input("Add meg a henger alapjának sugarát: 👉 "))
+helyes = 3.14 * r * r
+valasz = float(input("Mekkora a henger alapjának területe? (2 tizedesjegy) 👉 "))
+
+if round(valasz, 2) == round(helyes, 2):
+    print("✅ Respect! Telibe találtad!")
+else:
+    print(f"❌ Nem talált! A helyes válasz: {round(helyes,2)}")
+```
+
+
+
+
 ## igen nem kérdések?
 ++ bemutatkozó lap?
 mi a kedvenc tantárgyad?
