@@ -69,10 +69,3 @@
     font-style: normal;
 
 }
-
-/* CODE */
-
-@font-face {
-    font-family: 'Fira Code';
-    src: url('/fonts/FiraCode-VariableFont_wght.ttf') format('truetype'),
-}

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/fonts/FiraCode-VariableFont_wght.ttf') format('truetype'),
+}
+
 pre {
     background: #0f1117;
     padding: 1rem;
@@ -7,7 +12,6 @@ pre {
 
 code {
     font-family: 'Fira Code', Menlo, Monaco, "Courier New", monospace;
-    font-size: large;
 }
 
 /* This is a theme distributed by `starry-night`.

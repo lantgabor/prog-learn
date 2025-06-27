@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 // https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
 import { HashRouter, Routes, Route, Link } from "react-router";
 import "./index.css";
-import "./codeStyle.css";
+import "./CodeBlocks.css"
 import "./fontsettings.css";
 import "./App.css";
 
