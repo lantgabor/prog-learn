@@ -9,7 +9,7 @@ html {
     /* background-color: #242424; */
 
     background-color: azure;
-
+    color: #002B36;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -41,5 +41,9 @@ table tr:nth-child(even) {
 }
 
 table tr:nth-child(odd) {
-    background-color: #c8d5f0;
+    background-color: #2f69e5;
+}
+
+strong {
+    color: #5a8ce9;
 }
