@@ -8,15 +8,15 @@ code {
 }
 
 pre {
-    background: #0f1117;
+    background: #17253e;
     padding: 1rem;
     border-radius: 0.5rem;
     overflow-x: auto;
 }
 
 pre code {
-    background: #0f1117;
-    color: rgba(255, 255, 255, 0.9);
+    background: #17253e;
+    color: rgba(255, 255, 255, 0.95);
     font-family: 'Fira Code', Menlo, Monaco, "Courier New", monospace;
 }
 

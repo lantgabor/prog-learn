@@ -98,8 +98,9 @@ Csak itt a végeredmény egy app, egy játék, egy robot vagy valami más menő 
 - Mi az a Python? Egy szuper népszerű programozási nyelv, amit kezdők és profik is szeretnek.
 - Mi az, hogy programozási nyelv? Olyan, mint egy beszélt nyelv, csak itt az ember és a gép beszélget egymással.
 
-<img src="/python2.png" alt="pythonlogo" width="500" />
+<img src="/python2.png" alt="python2" width="500" />
 
+---
 ---
 
 ## Python telepítése
@@ -107,10 +108,12 @@ Csak itt a végeredmény egy app, egy játék, egy robot vagy valami más menő 
 Megmutatom lépésről lépésre, hogyan kell Windowson telepíteni, hogy tudjunk kódolni.
 
 ---
+---
 
 ## Hogyan kapcsolódik a matematika a programozáshoz?
 
-Sokszor ugyanúgy gondolkodunk, mint a matekban: megoldunk feladatokat, szabályokat követünk.
+Sokszor ugyanúgy gondolkodunk, mint a matekban: **megoldunk feladatokat, szabályokat követünk.**
+
 
 A tudást alapvetően kétféleképpen csoportosítjuk:
 | Deklaratív                                                           | Imperatív                                                                   |
@@ -125,12 +128,14 @@ A tudást alapvetően kétféleképpen csoportosítjuk:
 
 Az algoritmus = recept.
 
+<img src="/choccoveredcherries.jpg" alt="choccoveredcherries" width="500" />
+
 Olyan lépések sorozata, amik elvezetnek egy megoldáshoz.
 
 Egy jó algoritmus:
-- Pontos (nincs benne félreérthető lépés)
-- Véges (nem tart örökké)
-- A megengedett utasításokból áll (amit a gép ért)
+- **Pontos** (nincs benne félreérthető lépés)
+- **Véges** (nem tart örökké)
+- **A megengedett utasításokból áll** (amit a gép ért)
 
 ---
 
@@ -139,21 +144,17 @@ Egy jó algoritmus:
 **Mit tegyek, ha nem kapcsol fel a lámpa?**
 
 - Nézd meg, be van-e dugva.
-- Nézd meg, van-e áram.
 - Nézd meg, jó-e az égő.
+- Cseréld ki a lámpát.
 
-Ez egy folyamatábra formájában így nézhet ki:
-
-<img src="/flowchart.png" alt="Folyamatábra" />
-
----
-
-## Hogyan írunk le egy algoritmust?
+### Hogyan írunk le egy algoritmust?
 
 1. **Beszélt nyelven** (pszeudokód)
 2. **Folyamatábrával**
 
----
+Ez egy folyamatábra formájában így nézhet ki:
+
+<img src="/flowchart.png" alt="Folyamatábra" />
 
 ## Pszeudokód példa
 
@@ -208,11 +209,24 @@ Mi is történik itt?
 - `"szöveg"` Karakterek, másnéven `string`, szöveges elem
 - `()` zárójel a függvény paraméterei
 
+Számológép
+
+```python
+print("Megoldás: ", 7 + 3)
+```
+
+```
+Megoldás: 10
+```
+---
+
 ## További nyelvi elemek
 
 ### Érték adás
 
-`változó = "érték"`
+```python
+változó = "érték"
+```
 
 A `valtozo` most tartalmazza az `"érték"` szöveget.
 
@@ -272,11 +286,24 @@ Az adott adatoknak (változóknak) fajtái is vannak. Szinte minden programozás
 | ------ | --------------------------- | ------ |
 | `bool` | Logikai érték (igaz, hamis) | `True` |
 
-Ezek fontosak lesznek az adott típusokon elvégezhető műveletek során. Matematikában is műveleteket végzünk el: P.l: összeadás, kivonás, stb.
+## Kifejezések
+
+Ezek fontosak lesznek az adott típusokon elvégezhető **műveletek** során. Matematikában is műveleteket végzünk el: P.l: **összeadás, kivonás, stb.**
 
 - Nyelvtani szabályok vonatkoznak rájuk
 - Értelmesnek kell lennie
   - ```13:15 + True ``` &rarr; ???
+
+Kifejezések és típusok kapcsolata
+
+| Kifejezés        | Érték       |
+| ---------------- | ----------- |
+| 1+3              | 4           |
+| 6*6-9            | 25          |
+| 5 < 6            | True        |
+| "téli" + "kabát" | "télikabát" |
+| 5 + "let"        | ???         |
+| "5" + "let"      | "5let"      |
 
 ### Változó 
 
@@ -285,9 +312,7 @@ Névvel ellátott eltárolt értékek.
 - Egyedi, egyszerre egy dolgot képes tárolni!
 - Számít a műveletek sorrendje!
 
-### Példa
-
-#### Definíció
+### Definíció
 
 ```python
 ez_egy_valtozo = 1 # értéke 1 (egész szám)
@@ -295,16 +320,88 @@ masik_valtozo = "húsleves" # értéke szöveg (string)
 hosszu_ez_a_nap = True # értéke logikai igaz (bool)
 ```
 
-#### Értékadás
+### Értékadás
 
 ```python
-
 kedvenc_szamom = 3 # létrehozzuk
 kedvenc_szamom = kedvenc_szamom + 2 # módosítjuk
 ```
 
 - Sorrendiség számít!
 - Műveletek sorrendje számít!
+
+---
+
+### Használat
+
+Bement és kimenet
+
+```python
+kedvenc = input("Mi a kedvenc tantárgyad?")
+print("A kedvenc tantárgyam: " + kedvenc)
+```
+
+### Típusos átalakítás
+
+```python
+a = input("a") # 4
+b = input("b") # 2
+print(a + b)
+```
+
+42? 6? ??? Mi történik
+
+```python
+a = input("a") # 4
+b = input("b") # 2
+print("a+b =", int(a) + int(b))
+```
+
+## Szekvencia (Sorban végrehajtás)
+
+A program utasításai egymás után, sorban hajtódnak végre, fentről lefelé.
+
+```python
+print("Elindult a program")
+name = input("Mi a neved? ")
+print("Helló, " + name + "!")
+print("Program vége")
+```
+
+## Elágazás (Döntés – if, else)
+A program bizonyos feltételek alapján más-más utat választ.
+
+```python
+a = int(input())
+
+if a % 2:
+    print("páros")
+else:
+    print("páratlan")
+```
+
+## Ciklusok (Ismétlés – for, while)
+
+A ciklusok lehetővé teszik, hogy egy utasítást többször végrehajtsunk.
+
+### `for` ciklus – lista elemeinek bejárása:
+
+```python
+colors = ["piros", "zöld", "kék"]
+
+for color in colors:
+    print("Kedvenc szín: " + color)
+```
+### `while` ciklus – addig fut, amíg a feltétel igaz:
+
+```python
+count = 0
+
+while count < 3:
+    print("Szám: ", count)
+    count += 1
+```
+A `for` ciklus ismétel egy listán, míg a `while` addig ismétel, amíg egy feltétel igaz.
 
 ### Feladat
 
@@ -333,29 +430,19 @@ else:
     print(f"❌ Nem talált! A helyes válasz: {round(helyes,2)}")
 ```
 
-
-
 ### Feladatok
 
-# CMD -> python
-CMD notepad.exe
-
-
-### Python turtle
-
-```python
-
-
-```
-
-turtle feladatok - kör, háromszög, pizza
+1. Szorzótábla
+2. Celsius–Fahrenheit
+3. Szögek, radián
+4. Téglalap rajzoló stringben
+5. CMD -> python CMD notepad.exe
+6. Python turtle
+7. turtle feladatok - kör, háromszög, pizza
 
 
 
 
 
-## igen nem kérdések?
-++ bemutatkozó lap?
-mi a kedvenc tantárgyad?
-++ Visszafele feladat hogy én lekódolok valami bináris dolgot és azt visszafejtük.
+
 
