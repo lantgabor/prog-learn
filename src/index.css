@@ -49,9 +49,9 @@ strong {
 
 section {
   position: relative;
-  padding: 1em 3em 3em;
+  padding: 1em 2rem 2rem;
   background: azure;
-  margin-bottom: 3em;
+  margin-bottom: 3rem;
   z-index: 1;
   border: 4px solid rgb(207, 221, 221);
 }
@@ -106,7 +106,7 @@ body {
 } */
 
 main {
-  padding: 3rem;
+  padding: 1rem;
 }
 
 img {
