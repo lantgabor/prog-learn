@@ -94,7 +94,8 @@ section::after {
 } */
 
 body {
-  background: url('/bg/64.jpg') center/cover no-repeat fixed;
+  background-color: black;
+  background: url("/bg/64.jpg") center/cover no-repeat fixed;
 }
 
 /* section.glass {
