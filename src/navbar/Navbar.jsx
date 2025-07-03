@@ -12,15 +12,15 @@ function Navbar() {
 
   return (
     <nav className="d-navbar d-bg-base-100 d-shadow-sm">
-      <Link className="d-btn d-btn-ghost d-text-xl" to="/">Home</Link>
+      <Link to="/">Home</Link>
       <ul className="d-menu d-menu-horizontal d-px-1">
         <Submenu
-          title="Course"
-          items={[{ label: "Introduction", path: "/course/intro" }]}
+          title="Bevezetés"
+          items={[{ label: "1. óra", path: "/course/intro" }]}
           isOpen={openMenu === "course"}
           onToggle={() => toggleMenu("course")}
         />
-        <Submenu
+        {/* <Submenu
           title="Extras"
           items={[
             { label: "Hello", path: "/extras/hello" },
@@ -29,7 +29,7 @@ function Navbar() {
           ]}
           isOpen={openMenu === "extras"}
           onToggle={() => toggleMenu("extras")}
-        />
+        /> */}
       </ul>
     </nav>
   );

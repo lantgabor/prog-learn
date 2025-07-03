@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 // https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
 import { HashRouter, Routes, Route, Link } from "react-router";
 import "./index.css";
-import "./CodeBlocks.css"
+import "./CodeBlocks.css";
 import "./fontsettings.css";
 import "./App.css";
 
@@ -38,16 +38,15 @@ const generateRoutes = () => {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HashRouter>
-      <Navbar />
-      <Routes>
-        {generateRoutes()}
-        <Route path="/" element={<App />} />
-
-        {/* <Route path="/course/intro" element={<Intro />} />
-        <Route path="/extras/hello" element={<Hello />} />
-        <Route path="/extras/gfm" element={<Gfm />} />
-        <Route path="/extras/mmath" element={<MMath />} /> */}
-      </Routes>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <Routes>
+          {generateRoutes()}
+          <Route path="/" element={<App />} />
+        </Routes>
+      </main>
     </HashRouter>
-  </StrictMode>,
+  </StrictMode>
 );
