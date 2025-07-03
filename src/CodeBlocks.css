@@ -1,9 +1,10 @@
 @font-face {
     font-family: 'Fira Code';
-    src: url('/fonts/FiraCode-VariableFont_wght.ttf') format('truetype'),
+    src: url('fonts/FiraCode-VariableFont_wght.ttf') format('truetype'),
 }
 
 code {
+    font-variant-ligatures: none;
     font-family: 'Fira Code', Menlo, Monaco, "Courier New", monospace;
 }
 
