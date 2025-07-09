@@ -1,25 +1,3 @@
-// import { useState, useEffect } from "react";
-
-// export default function Timer() {
-//   const [seconds, setSeconds] = useState(0);
-//   const [running, setRunning] = useState(false);
-
-//   useEffect(() => {
-//     if (!running) return;
-//     const interval = setInterval(() => setSeconds((s) => s + 1), 1000);
-//     return () => clearInterval(interval);
-//   }, [running]);
-
-//   return (
-//     <div>
-//       <h1 style={{color: "white"}}>
-//         {new Date(seconds * 1000).toISOString().substr(11, 8)}
-//       </h1>
-//       <button onClick={() => setRunning(true)}>Start Timer</button>
-//     </div>
-//   );
-// }
-
 import { useState, useEffect } from "react";
 
 export default function Timer() {
