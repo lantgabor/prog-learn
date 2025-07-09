@@ -130,3 +130,9 @@ header a {
   vertical-align: middle;
   width: 20px;
 }
+
+.diagram {
+  border: none;
+  max-width: 25rem;
+  height: auto;
+}

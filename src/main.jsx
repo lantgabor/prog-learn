@@ -9,6 +9,7 @@ import "./App.css";
 
 import Navbar from "./navbar/Navbar.jsx";
 import App from "./App.jsx";
+import Timer from "./timer/Timer.jsx";
 
 // Dynamically import all page components
 const modules = import.meta.glob("./pages/**/*.mdx", { eager: true });
@@ -40,6 +41,7 @@ createRoot(document.getElementById("root")).render(
     <HashRouter>
       <header>
         <Navbar />
+        <Timer />
       </header>
       <main>
         <Routes>
