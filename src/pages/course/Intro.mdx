@@ -400,7 +400,7 @@ print("Helló, " + name + "!")
 print("Program vége")
 ```
 
-## Elágazás (Döntés – if, else)
+## Elágazás (Döntés – `if`, `else`)
 
 A program bizonyos feltételek alapján más-más utat választ.
 
@@ -413,25 +413,35 @@ else:
     print("páratlan")
 ```
 
-## Ciklusok (Ismétlés – for, while)
+## Ciklusok (Ismétlés – `for` és a `while`)
 
 A ciklusok lehetővé teszik, hogy egy utasítást többször végrehajtsunk.
 
 ### `for` ciklus – lista elemeinek bejárása:
 
-```python
-colors = ["piros", "zöld", "kék"]
+Előre tudjuk hányszor szeretnénk ismételni vagyis hányszor szeretnénk lépi (**for** *each* step)
 
-for color in colors:
-    print("Kedvenc szín: " + color)
+```python
+print("Lépés!", 1)
+print("Lépés!", 2)
+print("Lépés!", 3)
+# ...
+```
+Helyette
+
+```python
+for i in range(5):
+    print("Lépés!", i)
 ```
 
 ### `while` ciklus – addig fut, amíg a feltétel igaz:
 
+Addig ismételjük **amíg** a feltétel igaz (**while** it is *true*)
+
 ```python
 count = 0
 
-while count < 3:
+while count < 5:
     print("Szám: ", count)
     count += 1
 ```
@@ -443,12 +453,7 @@ A `for` ciklus ismétel egy listán, míg a `while` addig ismétel, amíg egy fe
 <section>
 ### Feladat
 
-Írjunk egy programot, amely kiszámítja egy henger kör alapjának területét a megadott sugár alapján. A program kérje be a felhasználótól a sugár értékét, majd kérje meg a felhasználót, hogy adja meg a szerinte helyes területet 2 tizedesjegy pontossággal.
-
-Ezután a program ellenőrizze, hogy a megadott válasz helyes-e, és adjon visszajelzést:
-
-- ✅ Helyes válasz esetén gratuláljon.
-- ❌ Rossz válasz esetén írja ki a helyes megoldást.
+Írjunk egy programot, amely kiszámítja egy kör alapjának területét a megadott sugár alapján. A program kérje be a felhasználótól a sugár értékét majd írja ki a pontos eredményt.
 
 A kör területe:
 $$A = \pi \times r^2 \\$$
@@ -459,27 +464,19 @@ Ahol $$A$$ = terület $$r$$ = sugár $$\pi \approx 3.14$$
 print("Kör alapú henger alap területe")
 
 r = int(input("Add meg a henger alapjának sugarát: 👉 "))
-helyes = 3.14 * r * r
-valasz = float(input("Mekkora a henger alapjának területe? (2 tizedesjegy) 👉 "))
+terulet = 3.14 * r * r
 
-if round(valasz, 2) == round(helyes, 2):
-    print("✅ Respect! Telibe találtad!")
-else:
-    print(f"❌ Nem talált! A helyes válasz: {round(helyes,2)}")
+print("A kör területe: ", terulet)
 ```
 
 </section>
 
-### Feladatok
 
 <section>
+### Feladatok
 
 1. Szorzótábla
 2. Celsius–Fahrenheit
 3. Szögek, radián
-4. Téglalap rajzoló stringben
-5. CMD -> python CMD notepad.exe
-6. Python turtle
-7. turtle feladatok - kör, háromszög, pizza
 
 </section>
