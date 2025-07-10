@@ -9,9 +9,14 @@ import remarkMath from "remark-math";
 import rehypeStarryNight from "rehype-starry-night";
 import rehypeKatex from "rehype-katex";
 
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+
 export default defineConfig({
   base: process.env.NODE_ENV === "production" ? "/prog-learn" : "/",
   plugins: [
+    ViteImageOptimizer({
+        /* pass your config */
+      }),
     {
       enforce: "pre",
       ...mdx({
