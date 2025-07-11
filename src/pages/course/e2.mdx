@@ -1,5 +1,5 @@
 <section>
-
+<>{new Date("12/11/2025").toLocaleDateString()}</>
 # Ismétlés
 
 ## Operátorok
@@ -50,7 +50,7 @@ Utasítások a robotnak.
 
 A pszeudokód egy olyan módja annak, hogy leírjuk egy program lépéseit egyszerű, **hétköznapi nyelven**, mintha csak elmesélnénk, mit csináljon a számítógép.
 
-Legnagyobb közös osztó
+Legnagyobb közös osztó (euklideszi algoritmus)
 
 ```rs
 Be: a, b
@@ -85,7 +85,7 @@ Minden alakzat egy külön feladatot vagy döntést jelöl, és a nyilak megmuta
 
 Igaz ha *a* **és** *b* is együtt igaz
 
-<img src="svg/and.svg" className="diagram" />
+<img src="svg/and.svg" />
 
 </div>
 <div style={{ flex: 1 }}>
@@ -93,7 +93,7 @@ Igaz ha *a* **és** *b* is együtt igaz
 
 Igaz ha *a* **vagy** *b* igaz
 
-<img src="svg/or.svg" className="diagram" />
+<img src="svg/or.svg" />
 
 </div>
 </div>
@@ -133,14 +133,17 @@ Amikor meg akarunk állni, mert tudjuk, hogy elértük a célunkat.
 
 Műküdik *for* és *while* esetén is.
 
+Keressük meg az első 7-el osztható számot 20-ig. - Később majd hasznosabb helyeken is.
+
 ```python
-num = 1
-while num <= 20:
-    if num % 7 == 0:
-        print(num, "is divisible by 7! Break!")
+correct_password = "python"
+
+while True:
+    guess = input("Enter password: ")
+    if guess == correct_password:
+        print("Access granted!")
         break
-    print("Checking", num)
-    num += 1
+    print("Wrong password. Try again.")
 ```
 
 Vigyázz a **break** csak egy ciklusból képes kilépni!
@@ -157,11 +160,22 @@ for i in range(1, 10):
 </section>
 
 <section>
-# 2 / 3 / 5 # fizzbuzz
 
-# gyakorolhatjuk a for vs while lehetőségeit
-# + 
-# gyakorolhatjuk az else if elif tulajdonságait
+# if - else - elif
+
+<img src="svg/fizzbuzz.svg" className="float"/>
+
+*Feladat* - Keressük meg azokat a számpokat amik,
+
+- oszthatóak 3-mal
+- oszthatóak 5-tel
+- oszható mindkettőlvel
+
+Gyakoroljuk a *for* és a *while* lehetőségeit
+
+Mi történik, 15-nél?
+
+
 
 ```python
 for i in range(1, 30):
@@ -175,58 +189,332 @@ for i in range(1, 30):
         print(i)
 ```
 
-# fizzbuzz 2/3/5
+</section>
 
-| a   | b   |
-| --- | --- |
+<section>
+
+
+# String műveletek
+
+Ismerjük már
+
+```python
+name = input("Hogy hívnak? ")
+print("Hello, " + name)
+```
+
+## További string műveletek
+
+**Fontos** 0-tól számolunk. Miért?
+
+<img src="svg/pythonslices.svg" className="diagram float"/>
+
+```python
+text = "Python"
+
+print(text[0])    # 'P' (első karakter, 0-tól indexelve)
+print(text[0:3])  # 'Pyt' (0-tól 2-ig)
+print(text[2:])   # 'thon' (2-től a végéig)
+print(text[-1])   # 'n' (utolsó karakter)
+```
+Figyeljünk
+
+
+```python
+text = "Python"
+
+print(text[:2] + text[2:]) # Python
+```
+
+
+
+### Bónusz
+
+```python
+"ha" * 2 # haha
+```
 
 </section>
 
 <section>
 
-1. string concat
-2. feladatok
-   1. irjunk egy programot ami atvaltja a forintot yuan-ra
-   2. legkissebb kozos tobbszoros
-3. oszthatosag
-4. 2 / 3 / 5 # fizzbuzz
-5.  faktorialis?
-6.  Listák
-7.  lista indexelés 0 tól?
-    1. miért? for each elmagyarázása
-8.  átlag és összeg? user inputtal
-    1. +=
-    2. !=
-    3. utana listákkal
-    4. fordítsunk meg egy listát
-9.  Legkissebb szam / legnagyobb szám megtalálása egy listában
-10. String is egy lista
-11. string vágások
-    1. [1]
-    2. [2:]
-    3. [:3]
-    4. [1:5]
-    5. "valami" \* 2
-    6. "asdasdasd"[:2] + ''[2:] összegzés
-12. and or kapcsolat for ciklusban
-    1.
+# Listák 
 
-> blockquote
-> asd
->
-> A blockquote with _some_ emphasis.
+<img src="img/shoppinglist.png" className="float" width="35%" />
 
-Two 🍰
 
-<>{new Date().toLocaleDateString()}</>
+A lista egy változóban több értéket tárol.
+
+
+```python
+gyumolcsok = ["alma", "banán", "cseresznye"]
+```
+
+A listák tartalmazhatnak **szövegeket, számokat** vagy akár más **listákat**.
+
+
+## Elem elérése index alapján 🔍
+
+```python
+print(gyumolcsok[0])  # 'alma'
+print(gyumolcsok[1])  # 'banán'
+```
+
+Negatív indexekkel a **lista végéről** érhetünk el elemeket
+
+```python
+print(gyumolcsok[-1])  # 'cseresznye'
+```
+
+## Elem módosítása ✏️
+
+```python
+gyumolcsok[1] = "áfonya"
+print(gyumolcsok)  # ['alma', 'áfonya', 'cseresznye']
+```
+
+## Elem hozzáadása ➕
+
+```python
+gyumolcsok.append("narancs")       # Hozzáadás a végéhez
+gyumolcsok.insert(1, "kivi")       # Beszúrás az 1-es helyre
+print(gyumolcsok)
+```
+
+## Elem eltávolítása ❌
+
+```python
+gyumolcsok.remove("alma")  # Törlés érték alapján
+gyumolcsok.pop(0)          # Törlés index alapján
+```
+
+## Lista bejárása ciklussal
+
+<img src="img/search.jpg" className="float-l" width="15%" />
+
+```python
+for gyumolcs in gyumolcsok:
+    print("Szeretem a", gyumolcs)
+```
+
+Lista hossza
+
+```python
+len(gyumolcsok) # 3
+```
+
+## Ezt már láttuk!
+
+```python
+for i in range(5): # lista! 0,1,2,3,4
+    print(i)
+```
+</section>
+
+<section>
+
+# Listák másolása
+<img src="img/copy.jpg" className="float" width="35%" />
+
+Ha egy listát másolsz egyenlőséggel (=), akkor nem új listát kapsz, hanem ugyanarra a listára mutat mindkét változó.
+
+```python
+eredeti = [1, 2, 3]
+masolat = eredeti
+
+masolat[0] = 99
+print(eredeti)  # [99, 2, 3] ❌
+```
+
+Mi történt?
+A masolat nem egy új lista – ugyanazt a memóriaterületet használja.
+
+## Hogyan másoljunk listát helyesen?
+
+`list()` függvénnyel
+
+```python
+eredeti = [4, 5, 6]
+masolat = list(eredeti)
+```
+
+vagy `copy()` metódussal
+
+```python
+eredeti = [7, 8, 9]
+masolat = eredeti.copy()
+```
+**Figyelem** Ez a másolat csak a felső szintet másolja. Ha listád listákat tartalmaz, azokat nem másolja
+
+## További beépített lista műveletek
+
+A `sum()` egy beépített Python függvény, ami összeadja a lista elemeit (csak számok esetén).
+
+```python
+szamok = [3, 5, 7]
+osszeg = 0
+for szam in szamok:
+    osszeg += szam # 15
+
+szamok = [3, 5, 7]
+eredmeny = sum(szamok)
+print(eredmeny)  # 15
+```
+
+Más hasznos függvények listákhoz
+
+| Függvény      | Leírás                         |
+| ------------- | ------------------------------ |
+| sum(lista)    | Összeadja az elemeket          |
+| len(lista)    | Megadja az elemek számát       |
+| min(lista)    | Legkisebb értéket adja vissza  |
+| max(lista)    | Legnagyobb értéket adja vissza |
+| sorted(lista) | Új, rendezett listát ad vissza |
+
+##  Mi történik, ha kilépünk a lista határain kívül?
+
+```python
+gyumolcsok = ["alma", "banán", "cseresznye"]
+
+print(gyumolcsok[3])  # ❌ Hiba!
+```
+
+```
+Traceback (most recent call last):
+  File "<python-input-1>", line 1, in <module>
+    print(gyumolcsok[3])  # ❌ Hiba!
+          ~~~~~~~~~~^^^
+IndexError: list index out of range
+```
 
 </section>
 
 <section>
 
-1. Téglalap rajzoló stringben
-2. CMD -> python CMD notepad.exe
-3. Python turtle
-4. turtle feladatok - kör, háromszög, pizza
+# A stringek úgy viselkednek, mint a listák
+
+*Feladat* - írjunk szöveget függőlegesen
+
+```python
+szoveg = input()
+ 
+i = 0
+while i < len(szoveg):
+    print(szoveg[i])
+    i += 1
+```
+
+**DE**
+
+```python
+szoveg[0] = "J"  # ❌ Hibát dob – a string nem változtatható meg így
+```
+
+Új stringet kell létrehozni
+
+```python
+szoveg = "J" + szoveg[1:]
+print(szoveg)  # 'Jython'
+```
+
+</section>
+
+<section>
+# Feladatok
+
+Minimum és maximum keresés listában
+
+```python
+numbers = [3, 7, 2, 9, 5]
+max_num = numbers[0]
+for n in numbers:
+    if n > max_num:
+        max_num = n
+print("Max is", max_num)
+```
+
+Összeg és átlag
+
+```python
+numbers = [2, 4, 6, 8]
+total = 0
+for n in numbers:
+    total += n
+average = total / len(numbers)
+print("Total:", total)
+print("Average:", average)
+
+```
+
+Lineáris keresés
+
+```python
+numbers = [4, 8, 1, 6]
+print(numbers)
+target = 6
+print("Keresett szám:", target)
+found = False
+
+for n in numbers:
+    if n == target:
+        found = True
+        break
+
+if found:
+    print("Megvan!")
+else:
+    print("Nincs benne a listában.")
+
+```
+
+Fordítsunk meg egy listát
+
+```python
+text = "hello"
+reversed_text = ""
+for char in text:
+    reversed_text = char + reversed_text
+print(reversed_text)
+```
+
+</section>
+
+<section>
+
+### Írj egy programot, amely szépen formázva kiír egy heti menzai étlapot!
+Használj benne speciális karaktereket:
+
+`\t`  → tabulátor (behúzás)
+
+`\n ` → új sor
+
+`\\ ` → visszaperjel megjelenítése
+
+### Téglalap rajzolása karakterekkel
+
+```python
+szelesseg = int(input("Add meg a téglalap szélességét: "))
+magassag = int(input("Add meg a téglalap magasságát: "))
+
+# Felső szegély
+print("+" + "-" * szelesseg + "+")
+
+# Középső sorok
+for _ in range(magassag - 2):
+    print("|" + " " * szelesseg + "|")
+
+# Alsó szegély, ha magasság legalább 2
+if magassag >= 2:
+    print("+" + "-" * szelesseg + "+")
+
+```
+
+1. Pénzváltó program
+1. legkissebb kozos tobbszoros
+1. faktorialis?
+1. CMD -> python CMD notepad.exe
+2. Python turtle
+3. turtle feladatok - kör, háromszög, pizza
+4. A Python debugger (például pdb) egy eszköz, amivel lépésről lépésre megállíthatod és átvizsgálhatod a programod futását.
 
 </section>

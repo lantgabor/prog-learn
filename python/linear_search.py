@@ -10,6 +10,6 @@ for n in numbers:
         break
 
 if found:
-    print("Found!")
+    print("Megvan!")
 else:
-    print("Not found.")
+    print("Nincs benne a listában.")
