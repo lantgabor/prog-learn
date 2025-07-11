@@ -23,6 +23,15 @@ if valtozo == 1
     print("igaz")
 else:
     print("hamis")
+
+# stringek összeadása
+kocsi = "rendőr" + "autó"
+print(kocsi)
+
+# hogyan ne!
+ez = 6
+az = "alma"
+print(ez + az) # ???
 ```
 
 ## Algoritmusok
@@ -33,26 +42,15 @@ Algoritmus = recept
 - Véges
 - Helyes (megengedett utasításokat használja)
 
-**Pszeudokód**
+### **Pszeudokód**
 
-<img
-  src="img/euklidesz.jpg"
-  alt="fb"
-  className="float"
-/>
-Legnagyobb közös osztó{" "}
+<img src="img/euklidesz.jpg" alt="fb" className="float" width="25%" />
 
-```rs
-Be: a, b
+Utasítások a robotnak.
 
-amíg b nem 0:
-    t = b
-    b = a % b
-    a = t
-vége
+A pszeudokód egy olyan módja annak, hogy leírjuk egy program lépéseit egyszerű, **hétköznapi nyelven**, mintha csak elmesélnénk, mit csináljon a számítógép.
 
-Ki: a
-```
+Legnagyobb közös osztó
 
 ```rs
 Be: a, b
@@ -66,17 +64,97 @@ vége
 Ki: a
 ```
 
-```rs
-Be: a, b
+### **Folyamatábra**
 
-amíg b nem 0:
-    t = b
-    b = a % b
-    a = t
-vége
+A térkép a programhoz. **Lépésről lépésre!**
 
-Ki: a
+Minden alakzat egy külön feladatot vagy döntést jelöl, és a nyilak megmutatják, merre halad tovább a program.
+
+<img src="img/flowchart.png" alt="Folyamatábra" />
+
+</section>
+
+<section>
+
+## Logikai operátorok
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+<div style={{ flex: 1 }}>
+
+### **and**
+
+Igaz ha *a* **és** *b* is együtt igaz
+
+<img src="svg/and.svg" className="diagram" />
+
+</div>
+<div style={{ flex: 1 }}>
+### **or**
+
+Igaz ha *a* **vagy** *b* igaz
+
+<img src="svg/or.svg" className="diagram" />
+
+</div>
+</div>
+
+</section>
+
+<section>
+
+
+## Ciklus vezérlés
+
+### **for**
+
+Tudjuk, hogy hányszor akarjuk ismételni
+
+```python
+for i in range(5):
+    print("Lépés:", i)
 ```
+
+### **while**
+
+Nem tudjuk előre hányszor akarjuk majd ismételni, de tudjuk mikor fogunk megállni
+
+```python
+count = 0
+while count < 5:
+    print("Lépés:", count)
+    count += 1
+```
+
+## <img src="svg/stopsign.svg" className="icon" width="10%" /> Vészfék? 
+
+#### **break**
+
+Amikor meg akarunk állni, mert tudjuk, hogy elértük a célunkat.
+
+Műküdik *for* és *while* esetén is.
+
+```python
+num = 1
+while num <= 20:
+    if num % 7 == 0:
+        print(num, "is divisible by 7! Break!")
+        break
+    print("Checking", num)
+    num += 1
+```
+
+Vigyázz a **break** csak egy ciklusból képes kilépni!
+
+```python
+for i in range(1, 10):
+    for j in range(1, 10):
+        if i * j == 36:
+            print("Megvan a 36!")
+            break
+        print(i, "*", j, "=", i * j)
+    print("---")
+```
+
 
 </section>
 
@@ -89,40 +167,35 @@ Ki: a
       2. /
       3. ==
       4. and or not
-      5. <img src="svg/or.svg" className="diagram" />
-      6. <img src="svg/and.svg" className="diagram" />
    3. string concatenation "asd" + "asd"
 2. for
 3. while
    1. break!!!
 4. string concat
 5. feladatok
-
    1. irjunk egy programot ami atvaltja a forintot yuan-ra
    2. legkissebb kozos tobbszoros
-
 6. oszthatosag
 7. 2 / 3 / 5 # fizzbuzz
-8. faktorialis?
-9.
-1.  Listák
-2.  lista indexelés 0 tól?
+8.  faktorialis?
+9.  Listák
+10. lista indexelés 0 tól?
     1. miért? for each elmagyarázása
-3.  átlag és összeg? user inputtal
+11. átlag és összeg? user inputtal
     1. +=
     2. !=
     3. utana listákkal
     4. fordítsunk meg egy listát
-4.  Legkissebb szam / legnagyobb szám megtalálása egy listában
-5.  String is egy lista
-6.  string vágások
+12. Legkissebb szam / legnagyobb szám megtalálása egy listában
+13. String is egy lista
+14. string vágások
     1. [1]
     2. [2:]
     3. [:3]
     4. [1:5]
     5. "valami" \* 2
     6. "asdasdasd"[:2] + ''[2:] összegzés
-7.  and or kapcsolat for ciklusban
+15. and or kapcsolat for ciklusban
     1.
 
 > blockquote

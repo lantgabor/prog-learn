@@ -32,13 +32,14 @@ export default function Timer() {
         top: "20px",
         right: "20px",
         padding: "10px",
-        border: "1px solid #ccc",
+        background: "azure",
+        border: "4px solid rgb(207, 221, 221)",
         borderRadius: "8px",
         boxShadow: "0 0 10px rgba(0,0,0,0.1)",
         zIndex: 1000,
       }}
     >
-      <h1 style={{ color: "white" }}>{formatTime(seconds)}</h1>
+      <h1 style={{ color: "#002b36" }}>{formatTime(seconds)}</h1>
       <button onClick={() => setRunning(true)}>Start Timer</button>
       <button
         onClick={() => {
