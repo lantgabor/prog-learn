@@ -110,9 +110,14 @@ main {
 }
 
 img {
-  max-width: 680px;
-  height: auto;
+  
+
   border: 4px solid rgb(207, 221, 221);
+}
+
+img.fill {
+  width: 100%;
+  max-width: 680px;
 }
 
 header {
