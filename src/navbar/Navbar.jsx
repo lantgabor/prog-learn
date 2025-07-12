@@ -20,6 +20,12 @@ function Navbar() {
           isOpen={openMenu === "course"}
           onToggle={() => toggleMenu("course")}
         />
+        <Submenu
+          title="Bevezetés"
+          items={[{ label: "2. óra", path: "/course/e2" }]}
+          isOpen={openMenu === "course"}
+          onToggle={() => toggleMenu("course")}
+        />
         {/* <Submenu
           title="Extras"
           items={[
