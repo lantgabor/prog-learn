@@ -422,7 +422,12 @@ print(szoveg)  # 'Jython'
 <section>
 # Feladatok
 
-Minimum és maximum keresés listában
+### 1. Minimum és maximum. 
+
+Keressük meg egy listában a legkisebb és a legnagyobb értéket, és írjuk ki őket.
+
+<details>
+<summary>Megoldás</summary>
 
 ```python
 numbers = [3, 7, 2, 9, 5]
@@ -430,23 +435,66 @@ max_num = numbers[0]
 for n in numbers:
     if n > max_num:
         max_num = n
-print("Max is", max_num)
+print("Maximum:", max_num)
 ```
 
-Összeg és átlag
+</details>
+
+### 2. Átlag és medián
+
+Számoljuk ki egy lista elemeinek átlagát és mediánját.
+
+**Átlag (számtani közép)**
+
+Az össes elem összege osztva az darabszámmal.
+
+$$\text{átlag} = \frac{\sum_{i=1}^{n} x_i}{n}$$
+
+**Medián**
+
+Középérték.
+
+Páratlan elemszám esetén:
+
+$$\text{medián} = x_{\frac{n+1}{2}}$$
+
+Páros elemszám esetén:
+
+$$\text{medián} = \frac{x_{\frac{n}{2}} + x_{\frac{n}{2} + 1}}{2}$$
+
+<details>
+<summary>Megoldás</summary>
 
 ```python
-numbers = [2, 4, 6, 8]
+numbers = [5, 3, 8, 6, 2]
 total = 0
 for n in numbers:
     total += n
 average = total / len(numbers)
-print("Total:", total)
-print("Average:", average)
+print("Összeg:", total)
+print("Átlag:", average)
 
+
+# Medián számítása
+numbers.sort()
+n = len(numbers)
+
+if n % 2 == 1:
+    median = numbers[n // 2]
+else:
+    median = (numbers[n // 2 - 1] + numbers[n // 2]) / 2
+
+print("Medián:", median)
 ```
 
-Lineáris keresés
+</details>
+
+### 3. Lineáris keresés.
+
+Keressünk meg egy adott számot egy listában.
+
+<details>
+<summary>Megoldás</summary>
 
 ```python
 numbers = [4, 8, 1, 6]
@@ -466,8 +514,14 @@ else:
     print("Nincs benne a listában.")
 
 ```
+</details>
 
-Fordítsunk meg egy listát
+### 4. Fordítsunk meg egy listát.
+
+Írj programot, ami megfordítja a lista elemeinek sorrendjét.
+
+<details>
+<summary>Megoldás</summary>
 
 ```python
 text = "hello"
@@ -476,45 +530,29 @@ for char in text:
     reversed_text = char + reversed_text
 print(reversed_text)
 ```
+</details>
 
-</section>
+### 5. (Extra) Rendezés 🤔
 
-<section>
+Írjunk egy programot ami képes egy listát növekvő sorrendbe rendezni. 
 
-### Írj egy programot, amely szépen formázva kiír egy heti menzai étlapot!
-Használj benne speciális karaktereket:
-
-`\t`  → tabulátor (behúzás)
-
-`\n ` → új sor
-
-`\\ ` → visszaperjel megjelenítése
-
-### Téglalap rajzolása karakterekkel
+<details>
+<summary>Megoldás</summary>
 
 ```python
-szelesseg = int(input("Add meg a téglalap szélességét: "))
-magassag = int(input("Add meg a téglalap magasságát: "))
+# Buborék rendezés
+szamok = [5, 3, 8, 1, 4]
 
-# Felső szegély
-print("+" + "-" * szelesseg + "+")
+n = len(szamok)
 
-# Középső sorok
-for _ in range(magassag - 2):
-    print("|" + " " * szelesseg + "|")
+for i in range(n):
+    for j in range(n - 1):
+        if szamok[j] > szamok[j + 1]:
+            szamok[j], szamok[j + 1] = szamok[j + 1], szamok[j]
 
-# Alsó szegély, ha magasság legalább 2
-if magassag >= 2:
-    print("+" + "-" * szelesseg + "+")
-
+print("Rendezett lista:", szamok)
 ```
 
-1. Pénzváltó program
-1. legkissebb kozos tobbszoros
-1. faktorialis?
-1. CMD -> python CMD notepad.exe
-2. Python turtle
-3. turtle feladatok - kör, háromszög, pizza
-4. A Python debugger (például pdb) egy eszköz, amivel lépésről lépésre megállíthatod és átvizsgálhatod a programod futását.
+</details>
 
 </section>
