@@ -16,13 +16,7 @@ function Navbar() {
       <ul className="d-menu d-menu-horizontal d-px-1">
         <Submenu
           title="Bevezetés"
-          items={[{ label: "1. óra", path: "/course/intro" }]}
-          isOpen={openMenu === "course"}
-          onToggle={() => toggleMenu("course")}
-        />
-        <Submenu
-          title="Bevezetés"
-          items={[{ label: "2. óra", path: "/course/e2" }]}
+          items={[{ label: "1. óra", path: "/course/intro" }, { label: "2. óra", path: "/course/e2" }]}
           isOpen={openMenu === "course"}
           onToggle={() => toggleMenu("course")}
         />
