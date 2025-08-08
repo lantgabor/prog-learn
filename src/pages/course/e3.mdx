@@ -18,11 +18,11 @@
 </section>
 <section>
 
-1. 🧮 The Decimal System: What We're Used To
+# A tízes számrendszer: Amit megszoktunk
 
 <img src="img/count.gif" className="float" width="35%" />
 
-Humans love the number 10. With 10 fingers, our counting system—called decimal—is based on powers of 10:
+Tíz ujjunk van, így a számolási rendszerünk—amit tízes számrendszernek hívunk—a 10 hatványain alapul:
 
 ```
 Places:   10^2   10^1   10^0
@@ -30,33 +30,33 @@ Value:     100     10      1
 Example:     3      2      5 → 3*100 + 2*10 + 5 = 325
 ```
 
-It's how we think—but not how computers think.
+Így gondolkodunk mi — de nem így gondolkodnak a számítógépek.
 
 <img src="img/Decimal_digit.png" width="50%" />
 
 </section>
 <section>
 
-Binary: The Language of Machines
+# Bináris: A gépek nyelve
 
 <img src="svg/binary.svg" />
 
-Computers use binary, a base-2 number system with only two digits: 0 and 1.
+A számítógépek a bináris számrendszert használják, amely egy kettes alapú rendszer, mindössze két számjeggyel: 0 és 1.
+
 ```
 Places:   2^3  2^2  2^1  2^0
 Value:      8    4    2    1
 Binary:     1    0    1    1 → 1*8 + 0*4 + 1*2 + 1*1 = 11
 ```
 
-Each 1 or 0 is a bit. 
+Minden egyes **1**-es vagy **0** egy bit.
+Gondolj a bitre úgy, mint egy kapcsolóra: **BE** vagy **KI.**
 
-8 bits = 1 byte. Think of a bit like a switch: ON or OFF.
-
-Images:
+8 bit = 1 bájt. 
 
 <img src="img/Binary_counter.gif" width="40%" />
 
-Összeadás:
+## Összeadás:
 
 Tízes számrendszerhez hasonlóan
 
@@ -75,7 +75,7 @@ b = 0b1101
 print(bin(a + b))  # 0b11000
 ```
 
-Kivonás:
+## Kivonás:
 
 ```
    1010   (10)
@@ -90,7 +90,7 @@ b = 0b0011
 print(bin(a - b))  # 0b111
 ```
 
-Szorzás:
+## Szorzás:
 
 ```
     101   (5)
@@ -108,7 +108,7 @@ b = 0b11
 print(bin(a * b))  # 0b1111
 ```
 
-Osztás:
+## Osztás:
 ```
 1100 ÷ 10  → 6
 = 0b1100 ÷ 0b10 = 0b110
@@ -119,14 +119,15 @@ b = 0b10
 print(bin(a // b))  # 0b110
 print(bin(a % b))   # 0b0 (remainder)
 ```
-counting in binary on fingers is easy
+
+Az ujjaidon binárisan számolni könnyű!
 
 </section>
 <section>
 
-Coding Challenge: Binary - Decimal
+Kódolási kihívás: Bináris - Decimális
 
-Convert between binary and decimal in Python:
+ Bináris és decimális számok közötti átváltás Pythonban:
 
 # Decimal to binary
 
@@ -140,12 +141,15 @@ print(bin(42))  # 0b101010
 print(int("101010", 2))  # 42
 ```
 
-Try converting your age, lucky number, or even part of your phone number to binary! Binary clock
+Próbáld meg átváltani a korodat, a szerencseszámodat, vagy akár a telefonszámod egy részét binárisra! 
+
+Készítsünk bináris órát!
 
 </section>
 <section>
 
-ASCII: Letters Meet Binary
+# ASCII: Amikor a betűk találkoznak a binárissal
+
 ```
 O     O           ,       
   o o          .:/    
@@ -156,7 +160,9 @@ O     O           ,
               ';\
 ```
 
-ASCII stands for American Standard Code for Information Interchange. Each letter or symbol corresponds to a number:
+Az ASCII az „American Standard Code for Information Interchange” rövidítése. 
+
+Minden betűhöz vagy szimbólumhoz tartozik egy szám:
 
 ```
 A → 65
@@ -166,7 +172,7 @@ a → 97
 ! → 33
 ```
 
-These numbers are stored in binary!
+Ezek a számok binárisan vannak tárolva!
 
 Kedvenc állatod: [asciiart.eu](https://www.asciiart.eu/animals)
 
@@ -175,52 +181,57 @@ Kedvenc állatod: [asciiart.eu](https://www.asciiart.eu/animals)
 </section>
 <section>
 
-Python + ASCII: ord() and chr()
+# Python + ASCII: `ord()` és `chr()`
+
 ```py
 print(ord('A'))  # 65
-print(chr(128512))  # 😀
+print(chr(66))  # B
 ```
 
-🎉 Try printing your name one letter at a time and getting the ASCII values!
+Próbáld ki: írasd ki a neved betűnként, és kérd le az ASCII értékeiket!
+
+Ez egy szórakoztató módja annak, hogy megismerkedj a karakterek mögött rejtőző számokkal.
 
 
 `1100110 1110010 1101001 1100100 1100001 1111001`
 
-ASCII Art: Drawing With Characters
+# ASCII Művészet: Rajzolás karakterekkel
 
-ASCII art is the ancient craft of creating visuals using just text characters:
+Az ASCII art az ősi mesterség, amikor csak szövegkarakterek segítségével készítünk képeket.
 
 `:-)     (•_•)     (╯°□°）╯︵ ┻━┻`
 
-Used in old-school games, terminals, and hacker culture.
+Régi videojátékokban, terminálokban és a „hacker kultúrában” is használták – és ma is menő!
 
 </section>
 <section>
 <img src="img/thonks.png" className="float" width="15%" />
-Bits and Storage: How Big is 32-bit?
 
-8 bits = 256 values (0–255)
+Bitek és tárolás: Mekkora a 32-bit?
 
-16 bits = 65,536 values
+8 bit = 256 érték (0–255)
 
-32 bits = over 4 billion values!
+16 bit = 65 536 érték
 
-More bits = more room for letters, sounds, colors, and yes—emojis. 🎨🎧
+32 bit = több mint 4 milliárd különböző érték!
+
+Minél több bitünk van, annál több dolog fér el: több betű, több hang, több szín, és igen—több emoji is! 🎨🎧
 
 </section>
 <section>
 
-Enter Unicode: ASCII's Big Brother
+# Unicode: ASCII Nagy Testvére
 
 <img src="img/unicode.jpg" width="55%" />
 
-Unicode expands ASCII to include every language, script, and emoji. It supports:
+A Unicode kibővíti az ASCII-t, hogy minden nyelvet, írásrendszert és emojit is tartalmazzon.
+Támogatja például:
 
-Accents: é, ñ, ü
+Ékezeteket: é, ñ, ü
 
-Languages: Arabic, Hindi, Chinese
+Nyelveket: arab, hindi, kínai
 
-Emojis and symbols
+Emojikat és szimbólumokat is!
 
 ```py
 print("こんにちは")  # Japanese
@@ -228,15 +239,15 @@ print("こんにちは")  # Japanese
 </section>
 <section>
 
-emojis = Unicode Magic
+# Emojik = Unicode varázslat ✨
 
-Emojis have Unicode codes too:
+Igen, az emojiknak is van Unicode-kódjuk!
 
 ```py
 print("\U0001F602")  # 😂
 ```
 
-Unicode powers emojis in texts, websites, and code!
+Ezért tudod őket használni üzenetekben, weboldalakon vagy akár a saját programodban is.
 
 Minden évben új [https://emojipedia.org/new](https://emojipedia.org/new)
 
@@ -245,27 +256,32 @@ Minden évben új [https://emojipedia.org/new](https://emojipedia.org/new)
 
 <img src="img/gato-rgb.gif" className="float" width="25%" />
 
-Colors in Bits
+# Színek bitekben
 
-Colors on screen use RGB:
+A képernyőn megjelenő színek az RGB rendszert használják:
 
-Red, Green, Blue channels
+Red – piros
+Green – zöld
+Blue – kék
 
-Each uses 8 bits: 0–255
+Mindhárom csatorna 8 bitet használ: értékek 0-tól 255-ig
 
 # Pure red
-r, g, b = 255, 0, 0
 
-🖌️ 24 bits = 16.7 million color possibilities.
+`r, g, b = 255, 0, 0`
+
+🖌️ 24 bit = 16,7 millió színkombináció!
 
 <img src="img/tvstore.jpg" width="55%" />
 
 </section>
 <section>
 
-Videos = Images + Time
+# Videók = Képek + Idő
 
-Videos are just a rapid sequence of images called frames. Show 24–60 images per second and your brain sees motion.
+A videók nem mások, mint gyors egymásutánban megjelenített képek (ún. képkockák).
+
+Ha másodpercenként 24–60 képet látunk, az agyunk mozgást érzékel!
 
 <img src="img/flipbook-animation.gif" width="55%" />
 
@@ -273,9 +289,11 @@ Videos are just a rapid sequence of images called frames. Show 24–60 images pe
 </section>
 <section>
 
-Sound & Music in Computers
+# Hang és zene a számítógépben
 
-Sound = waveforms → converted into samples (numbers) at high speed, like 44,100 per second!
+A hang hullámformákból áll, amit a gép mintavételez – nagyon gyorsan számokká alakítva.
+
+Például: 44 100 minta másodpercenként egy tipikus zenei hangfájl esetén!
 
 <img src="svg/Frequency_vs_name.svg" width="55%" />
 
@@ -283,22 +301,28 @@ Sound = waveforms → converted into samples (numbers) at high speed, like 44,10
 </section>
 <section>
 
-Emoji Time: Create with Code
+# Emojis: Alkoss kóddal!
 
+```py
 emojis = ["😀", "🐍", "🚀", "🍕"]
 for emoji in emojis:
     print(emoji * 5)
+```
 
-Make emoji flags, borders, or spam your favorite emoji 100x 😎
+Készíthetsz emoji zászlót, szegélyt vagy akár 100-szor is kiprintelheted a kedvencedet 😎
+
+Játékos és vicces módja a ciklusok gyakorlásának!
 
 </section>
 <section>
 
-Pseudorandom Numbers
+# Pszeudovéletlen számok
+
 <img src="img/numbers-crunching.gif"  className="float" width="15%" />
 
+A számítógép nem tud igazán véletlenszerű lenni
 
-Computers can't be truly random, so they fake it with pseudorandom generators:
+Ezért álvéletlenszám-generátorokat használ, amelyek úgy tűnnek, mintha véletlenszerűek lennének.
 
 ```python
 import random
@@ -311,7 +335,7 @@ print(random.randint(1, 10))
 </section>
 <section>
 
-Python Lottery Numbers
+# Python Lottószámok
 
 ```python
 import random
@@ -319,14 +343,13 @@ lottery = random.sample(range(1, 50), 6)
 print("🎟️ Your numbers:", lottery)
 ```
 
-Let Python pick your lucky numbers 🎲
-
-Lottery balls
+Hagyd, hogy a Python válassza ki a szerencseszámaidat 🎲
+Képzeld el, hogy lottógolyókat húzol véletlenszerűen!
 
 </section>
 <section>
 
-Searching Names: Linear vs Binary
+# Keresés nevek között: Lineáris vs Bináris
 
 <img src="img/phonebook.jpg" width="20%" />
 
@@ -355,24 +378,19 @@ if names[index] == "Dóri":
     print("Found (fast)!")
 ```
 
-Linear = check one-by-one 🐢
-Binary = divide and conquer ⚡ (needs sorted data)
+Lineáris keresés = egyesével ellenőriz (🐢 lassú)
+Bináris keresés = felez és hódít (⚡ gyorsabb – de rendezett adatok kellenek!)
 
 </section>
 <section>
 
 # Feladatok
 
-megadja a szövegben található kisbetűk számát.
-
-Caesar-féle kódolás [https://en.wikipedia.org/wiki/Caesar_cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
-
-kő papír ollo?
-
-hányszor szerepelnek a magánhangzók a szövegben?
-
-utolso N szam atlaga
-
-[https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80](https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80)
+1. Számoljuk meg a szövegben található kisbetűk számát.
+2. Caesar-féle kódolás [https://en.wikipedia.org/wiki/Caesar_cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
+3. Kő papír ollo?
+4. Hányszor szerepelnek a magánhangzók a szövegben?
+5. Utolsó N szám átlaga
+6. Leibniz formula [https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80](https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80)
 
 </section>
