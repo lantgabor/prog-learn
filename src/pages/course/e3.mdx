@@ -363,7 +363,7 @@ minden elso oldal
 
 vagy minden masodik oldal?
 
-```
+```py
 for name in names:
     if name == "Dóri":
         print("Found!")
@@ -372,10 +372,23 @@ for name in names:
 # Binary search
 
 ```python
-import bisect
-index = bisect.bisect_left(names, "Dóri")
-if names[index] == "Dóri":
-    print("Found (fast)!")
+target = "Dóri"
+
+low = 0
+high = len(names) - 1
+found = -1
+
+while low <= high:
+    mid = (low + high) // 2
+    if names[mid] == target:
+        found = mid
+        break
+    elif names[mid] < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+print(found)  # Will print index or -1 if not found
 ```
 
 Lineáris keresés = egyesével ellenőriz (🐢 lassú)
