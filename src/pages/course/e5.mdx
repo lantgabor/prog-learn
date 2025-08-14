@@ -1,0 +1,46 @@
+<section>
+
+### Írj egy programot, amely szépen formázva kiír egy heti menzai étlapot!
+Használj benne speciális karaktereket:
+
+`\t`  → tabulátor (behúzás)
+
+`\n ` → új sor
+
+`\\ ` → visszaperjel megjelenítése
+
+### Téglalap rajzolása karakterekkel
+
+```python
+szelesseg = int(input("Add meg a téglalap szélességét: "))
+magassag = int(input("Add meg a téglalap magasságát: "))
+
+# Felső szegély
+print("+" + "-" * szelesseg + "+")
+
+# Középső sorok
+for _ in range(magassag - 2):
+    print("|" + " " * szelesseg + "|")
+
+# Alsó szegély, ha magasság legalább 2
+if magassag >= 2:
+    print("+" + "-" * szelesseg + "+")
+
+```
+
+1. Pénzváltó program
+1. legkissebb kozos tobbszoros
+1. faktorialis?
+1. CMD -> python CMD notepad.exe
+2. Python turtle
+3. turtle feladatok - kör, háromszög, pizza
+4. A Python debugger (például pdb) egy eszköz, amivel lépésről lépésre megállíthatod és átvizsgálhatod a programod futását.
+
+</section>
+
+<section>
+
+1. A while-ra egy példa esetleg lottószám sorsolás, többször ügyan az nem lehet. while $i <= 5$
+2. algoritmus, telefonkonyv egyesével, kettesével, binaris kereses?
+
+</section>

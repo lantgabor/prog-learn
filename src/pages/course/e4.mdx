@@ -1,60 +1,160 @@
+
+<section>
+# Ismétlés
+
+1. **Tízes számrendszer** működése és számítási logikája.
+2. **Bináris számrendszer:** alapok, bit és bájt fogalma, összeadás, kivonás, szorzás, osztás binárisan.
+3. **Pythonban** bináris–decimális átváltás gyakorlása.
+   1. `0b111011`
+   2. bin()
+4. **ASCII kód:** betűk és szimbólumok számbeli (bináris) ábrázolása
+   1. `ord()` és `chr()` függvények.
+5. ASCII művészet: karakterekből készített rajzok és a hacker kultúrában való használat.
+6. Bitméretek jelentősége: 8, 16, 32 bit kapacitás és tárolási lehetőségek.
+7. **Unicode:** globális karakterkészlet, amely támogatja a nyelveket, ékezeteket, szimbólumokat és emojikat.
+8. **Emojik**: Unicode-kódolás, használat programban és kommunikációban.
+9. RGB színrendszer: 8-8 bit csatornánként, 24 bites színábrázolás 16,7 millió színnel.
+10. **Videó**: képkockák sorozata, 24–60 FPS mozgásérzet létrehozásához.
+11. **Hang**: mintavételezés, például 44,1 kHz zenei fájloknál.
+12. Emojik programozása Pythonban ciklusokkal – kreatív kódolási gyakorlat.
+</section>
+
 <section>
 
-### Írj egy programot, amely szépen formázva kiír egy heti menzai étlapot!
-Használj benne speciális karaktereket:
+# Debugger
 
-`\t`  → tabulátor (behúzás)
+**Lépésenkénti futtatás** – Nem kell a teljes programot újraindítani, megnézheted, pontosan hol mi történik.
 
-`\n ` → új sor
+**Változók figyelése** – Láthatod a program aktuális állapotát, változókat és objektumokat.
 
-`\\ ` → visszaperjel megjelenítése
+**Hibák forrásának felderítése** – Könnyen megtalálhatod, hol tér el a program a várt működéstől.
 
-### Téglalap rajzolása karakterekkel
+## Hogyan működik?
+
+- **Töréspont (Breakpoint):** A program ezen a ponton megáll a futásban, és átadja az irányítást a debuggernek.
+- **Végrehajtás irányítása:** Léphetsz soronként, vagy folytathatod a futást a következő töréspontig.
+- **Memória és változók vizsgálata:** Megnézheted az aktuális változóértékeket és memóriaállapotot.
+
+- **Futás közbeni módosítás:** Egyes debuggekerek engedik a változók, sőt, a futó kód módosítását is.
+
+| Funkció                 | Leírás                                                     |
+| ----------------------- | ---------------------------------------------------------- |
+| **Breakpoint**          | A program ezen a soron megáll.                             |
+| **Step over**           | Következő sorra lép, de nem megy bele a függvényhívásokba. |
+| **Step into**           | Belép a függvénybe és ott folytatja a lépést.              |
+| **Step out**            | Kilép az aktuális függvényből a hívóhoz.                   |
+| **Continue**            | Folytatja a futást a következő breakpointig.               |
+| **Watch**               | Kijelölt változó értékének figyelése.                      |
+| **Evaluate expression** | Tetszőleges kifejezés kiértékelése futás közben.           |
+
+## Tipikus hibakeresési folyamat
+
+1. Töréspontok beállítása – Oda, ahol gyanítod a hibát.
+2. Program indítása debugger módban
+3. Kód végiglépkedése – Figyelve a változókat és a vezérlés útját.
+
+Elemzés – Hol tér el a tényleges érték a várttól?
+
+Hiba javítása – Kód módosítása.
+
+Újra futtatás – Ellenőrzés, hogy megszűnt-e a probléma.
+
+https://pythontutor.com/render.html#mode=display
+
+https://pyodide.org/en/stable/console.html
+</section>
+
+<section>
+
+# Pszeudovéletlen számok
+
+<img src="img/numbers-crunching.gif"  className="float" width="15%" />
+
+A számítógép nem tud igazán véletlenszerű lenni
+
+Ezért álvéletlenszám-generátorokat használ, amelyek úgy tűnnek, mintha véletlenszerűek lennének.
 
 ```python
-szelesseg = int(input("Add meg a téglalap szélességét: "))
-magassag = int(input("Add meg a téglalap magasságát: "))
+import random
+print(random.randint(1, 10))
+```
+[https://www.youtube.com/watch?v=1cUUfMeOijg](https://www.youtube.com/watch?v=1cUUfMeOijg)
 
-# Felső szegély
-print("+" + "-" * szelesseg + "+")
+<img src="img/lavalamp.jpg"  width="25%" />
 
-# Középső sorok
-for _ in range(magassag - 2):
-    print("|" + " " * szelesseg + "|")
+</section>
+<section>
 
-# Alsó szegély, ha magasság legalább 2
-if magassag >= 2:
-    print("+" + "-" * szelesseg + "+")
+# Python Lottószámok
 
+```python
+import random
+lottery = random.sample(range(1, 50), 6)
+print("🎟️ Your numbers:", lottery)
 ```
 
-1. Pénzváltó program
-1. legkissebb kozos tobbszoros
-1. faktorialis?
-1. CMD -> python CMD notepad.exe
-2. Python turtle
-3. turtle feladatok - kör, háromszög, pizza
-4. A Python debugger (például pdb) egy eszköz, amivel lépésről lépésre megállíthatod és átvizsgálhatod a programod futását.
+Hagyd, hogy a Python válassza ki a szerencseszámaidat 🎲
+Képzeld el, hogy lottógolyókat húzol véletlenszerűen!
 
 </section>
-
 <section>
-1. A while-ra egy példa esetleg lottószám sorsolás, többször ügyan az nem lehet. while $i <= 5$
-2. for range() ugy viselkedik mint egy lista
-3. tizes szamrendszer
-4. kettes szamrendszer
-5. binaris szamolos feladat kodolas
-6. karakterek ord() és chr() ASCII + tablazat
-7. ASCII szamolos feladat - infocről esetleg copy
-8. 3-3 random pelda karakterekbol szamokka es visszza esetleg binarisba at
-9.  256 karakter eleg az angolhoz, de mi van a mas nyelvekkel, 32 bit mar 4 billo
-10. UNICODE? emojis? miert mert rengeteg hely lett 4 billio. Unicode 32bit
-11. Most popular emoji - tears of joy?
-12. Szinek???
-13. Videok? frames per second?
-14. Sound? kotta, frekvencia, hangero, stb
-15. import random? find the cup feladat?
-16. Debugger hasznalata
-17. algoritmus, telefonkonyv egyesével, kettesével, binaris kereses?
+
+# Keresés nevek között: Lineáris vs Bináris
+
+<img src="img/phonebook.jpg" width="20%" />
+
+```
+names = ["Adam", "Béla", "Cecil", "Dóri", "Erik"]
+```
+
+# Linear search
+
+minden elso oldal
+
+vagy minden masodik oldal?
+
+```py
+for name in names:
+    if name == "Dóri":
+        print("Found!")
+```
+
+# Binary search
+
+```python
+target = "Dóri"
+
+low = 0
+high = len(names) - 1
+found = -1
+
+while low <= high:
+    mid = (low + high) // 2
+    if names[mid] == target:
+        found = mid
+        break
+    elif names[mid] < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+print(found)  # Will print index or -1 if not found
+```
+
+Lineáris keresés = egyesével ellenőriz (🐢 lassú)
+Bináris keresés = felez és hódít (⚡ gyorsabb – de rendezett adatok kellenek!)
 
 </section>
+<section>
+
+# Feladatok
+
+1. Számoljuk meg a szövegben található kisbetűk számát.
+2. Caesar-féle kódolás [https://en.wikipedia.org/wiki/Caesar_cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
+3. Kő - papír - olló?
+4. Hányszor szerepelnek a magánhangzók a szövegben?
+5. Utolsó N szám átlaga
+6. Leibniz formula [https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80](https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80)
+
+</section>
+
