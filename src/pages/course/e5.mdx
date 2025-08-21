@@ -25,21 +25,24 @@ def negyzet(x):
 print(negyzet(5))
 ```
 
-# Függvények felépítése
+## Függvények felépítése
 
 ```py
 def fuggveny_nev(parameterek):
 ```
 
-`def` → kulcsszó, ami azt jelenti: „Most definiálok egy függvényt.”
-`fuggveny_nev` → a függvény neve (mint amikor elnevezed a robotodat).
+`def` &rarr; **kulcsszó**, ami azt jelenti: „Most definiálok egy függvényt.”
 
-`(parameterek)` → kis dobozok az információnak, amit a függvény kaphat.
+`fuggveny_nev` &rarr; **a függvény neve** (mint amikor elnevezed a robotodat).
 
-`:` → jelzi a Python-nak: „Most jönnek az utasítások.”
+`(parameterek)` &rarr; kis dobozok az információnak, **amit a függvény kaphat**.
+
+`:` &rarr; jelzi a Python-nak: „Most jönnek az utasítások.”
+
+## Return
 
 A függvények néha nem csak csinálnak valamit (pl. kiírnak szöveget), hanem vissza is adnak egy eredményt.
-Ehhez használjuk a return kulcsszót.
+Ehhez használjuk a `return` kulcsszót.
 
 ```py
 def osszead(a, b):
@@ -74,10 +77,44 @@ print(eredmeny)  # ❌ hiba!
 
 # Globális vs. Lokális
 
-Globális változó → mindenki látja (a teljes programban).
+Globális változó &rarr; mindenki látja (a teljes programban).
 
-Lokális változó → csak a függvény látja, ahol létrejött.
+Lokális változó &rarr; csak a függvény látja, ahol létrejött.
 
+
+</section>
+
+<section>
+
+# Procedurális/hierarchikus programozás
+
+Képzeld el, hogy a programod egy színdarab 🎭.
+
+A függvények = a színészek, akik tudnak különböző dolgokat.
+
+A main függvény = a főszereplő, aki elindítja a darabot, és megmondja, milyen sorrendben történjenek a dolgok.
+
+```py
+def main():
+    print("Helló, én vagyok a főszereplő!")
+    seged()
+
+def seged():
+    print("Én pedig egy mellékszereplő vagyok.")
+
+if __name__ == "__main__":
+    main()
+```
+
+Mit jelentenek ezek?
+
+if __name__ == "__main__":
+
+Ez egy varázsformula ✨, ami azt mondja:
+
+„Ha közvetlenül futtatod ezt a fájlt, indítsd el a main()-t!”
+
+Ha viszont csak importálod a fájlt máshonnan, akkor nem fut el automatikusan a main().
 
 </section>
 
@@ -86,11 +123,11 @@ Lokális változó → csak a függvény látja, ahol létrejött.
 ### Írj egy programot, amely szépen formázva kiír egy heti menzai étlapot!
 Használj benne speciális karaktereket:
 
-`\t`  → tabulátor (behúzás)
+`\t`  &rarr; tabulátor (behúzás)
 
-`\n ` → új sor
+`\n ` &rarr; új sor
 
-`\\ ` → visszaperjel megjelenítése
+`\\ ` &rarr; visszaperjel megjelenítése
 
 ### Téglalap rajzolása karakterekkel
 
