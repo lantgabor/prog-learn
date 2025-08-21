@@ -3,7 +3,7 @@ services:
     image: node:latest
     command: npx vite dev --host
     volumes:
-      - ${PWD}:/work
+      - .:/work
     working_dir: /work
     ports:
       - "5173:5173"
