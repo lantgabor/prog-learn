@@ -1,0 +1,66 @@
+
+<section>
+
+### Írj egy programot, amely szépen formázva kiír egy heti menzai étlapot!
+Használj benne speciális karaktereket:
+
+`\t`  &rarr; tabulátor (behúzás)
+
+`\n ` &rarr; új sor
+
+`\\ ` &rarr; visszaperjel megjelenítése
+
+### Téglalap rajzolása karakterekkel
+
+```python
+szelesseg = int(input("Add meg a téglalap szélességét: "))
+magassag = int(input("Add meg a téglalap magasságát: "))
+
+# Felső szegély
+print("+" + "-" * szelesseg + "+")
+
+# Középső sorok
+for _ in range(magassag - 2):
+    print("|" + " " * szelesseg + "|")
+
+# Alsó szegély, ha magasság legalább 2
+if magassag >= 2:
+    print("+" + "-" * szelesseg + "+")
+
+```
+
+1. Pénzváltó program
+1. legkissebb kozos tobbszoros
+1. faktorialis?
+1. CMD -> python CMD notepad.exe
+2. Python turtle
+3. turtle feladatok - kör, háromszög, pizza
+4. A Python debugger (például pdb) egy eszköz, amivel lépésről lépésre megállíthatod és átvizsgálhatod a programod futását.
+
+</section>
+
+<section>
+
+1. A while-ra egy példa esetleg lottószám sorsolás, többször ügyan az nem lehet. while $i <= 5$
+2. algoritmus, telefonkonyv egyesével, kettesével, binaris kereses?
+
+
+
+Múzeum I.
+Egy múzeumban kíváncsiak arra, a hét mely napján van a legtöbb látogató. Ehhez több hét adatait feldolgozzák.
+
+Írj programot, mely a szabványos bemenetén fogadja a múzeum napi látogatási adatait úgy, hogy soronként a hét napjának sorszámát kapjuk 0-6 között, majd szóközzel elválasztva a látogatók számát. Az adatok rendezetlenül érkeznek, adott sorszámú naphoz több bejegyzés is tartozhat. A bemenet végét üres sor jelzi.
+
+Írja ki a program a szabványos kimenetre annak a napnak a sorszámát, mely a legtöbb látogatót jelenti. Feltételezzük, hogy egy ilyen nap van.
+
+
+
+Múzeum II.
+Kis ZH volt
+Egy múzeumban gazdasági okok miatt heti egy szünnapot szeretnének tartani, ezért keresik a hét azon napját, amikor a legkevesebb a látogató.
+
+Írj programot, mely a szabványos bemenetén fogadja a múzeum napi látogatási adatait úgy, hogy soronként a hét napjának sorszámát kapjuk 1-7 között, majd szóközzel elválasztva a látogatók számát. Az adatok rendezetlenül érkeznek, adott sorszámú naphoz több bejegyzés is tartozhat. A bemenet végét üres sor jelzi.
+
+Írja ki a program a szabványos kimenetre annak a napnak a sorszámát, amely a legkevesebb látogatót jelenti. Feltételezzük, hogy egy ilyen nap van.
+
+</section>

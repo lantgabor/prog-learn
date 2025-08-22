@@ -1,5 +1,26 @@
 <section>
 
+# Ismétlés
+
+- **Debugger**
+  - Lépésenkénti futtatás
+  - Változók figyelése
+  - Hibák forrásának felderítése
+  - Hogyan működik?
+    - Breakpoint
+    - Végrehajtás irányítása
+    - Memória és változók vizsgálata
+    - Futás közbeni módosítás
+
+- **Pszeudovéletlen számok**
+  - Álvéletlenszám-generátor
+  - `random.randint()`
+  - Láva lámpa példa
+
+</section>
+
+<section>
+
 # Függvények
 
 Képzeld el, hogy van egy robotod.
@@ -58,7 +79,7 @@ print(eredmeny)
 
 # Lokális változók
 
-Képzeld el, hogy van egy robotod, és annak van egy kis saját fiókja.
+A robotodnak van egy kis saját fiókja.
 Amikor a robot dolgozik, ebbe a fiókba teszi azokat a változókat, amiket csak ő ismer.
 Ezeket nevezzük lokális változóknak.
 
@@ -120,47 +141,10 @@ Ha viszont csak importálod a fájlt máshonnan, akkor nem fut el automatikusan 
 
 <section>
 
-### Írj egy programot, amely szépen formázva kiír egy heti menzai étlapot!
-Használj benne speciális karaktereket:
+# Feladatok
 
-`\t`  &rarr; tabulátor (behúzás)
-
-`\n ` &rarr; új sor
-
-`\\ ` &rarr; visszaperjel megjelenítése
-
-### Téglalap rajzolása karakterekkel
-
-```python
-szelesseg = int(input("Add meg a téglalap szélességét: "))
-magassag = int(input("Add meg a téglalap magasságát: "))
-
-# Felső szegély
-print("+" + "-" * szelesseg + "+")
-
-# Középső sorok
-for _ in range(magassag - 2):
-    print("|" + " " * szelesseg + "|")
-
-# Alsó szegély, ha magasság legalább 2
-if magassag >= 2:
-    print("+" + "-" * szelesseg + "+")
-
-```
-
-1. Pénzváltó program
-1. legkissebb kozos tobbszoros
-1. faktorialis?
-1. CMD -> python CMD notepad.exe
-2. Python turtle
-3. turtle feladatok - kör, háromszög, pizza
-4. A Python debugger (például pdb) egy eszköz, amivel lépésről lépésre megállíthatod és átvizsgálhatod a programod futását.
-
-</section>
-
-<section>
-
-1. A while-ra egy példa esetleg lottószám sorsolás, többször ügyan az nem lehet. while $i <= 5$
-2. algoritmus, telefonkonyv egyesével, kettesével, binaris kereses?
+1. Legyen Ön is Milliomos
+2. Hatos lottó
+3. Telefonkönyv keresés
 
 </section>
