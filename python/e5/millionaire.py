@@ -47,13 +47,9 @@ questions = [
 
 prizes = [1_000, 5_000, 10_000, 25_000, 50_000, 100_000, 250_000, 500_000, 750_000, 1_000_000]
 
-for i in prizes:
-    print(i)
 
 nyeremeny = 0
 vesztes = False
-
-
 
 while not vesztes and nyeremeny < 1_000_000:
     for i, (kerdes, valaszok, helyes) in enumerate(questions):
