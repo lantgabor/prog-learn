@@ -1,0 +1,165 @@
+<section>
+
+# Alkalmazások csomagolása és terjesztése
+
+
+- **Több fájlos programok**
+  - Hogyan működnek együtt a fájlok?
+  - Import használata
+  - Programok rendszerezése
+
+- **Program csomagolása**
+  - Mi kell egy kész programhoz?
+  - Hogyan lesz a kódból igazi alkalmazás?
+  - Program megosztása másokkal
+
+</section>
+
+<section>
+
+# Több fájlos programok
+
+Képzeld el, hogy egy nagy LEGO készletet építesz! 🏗️
+Minden kis zacskóban más-más elemek vannak, amik együtt adják ki a teljes modellt.
+
+A Python programoknál is ugyanígy működik:
+
+```python
+# jatek.py - Itt van a fő játék
+from kerdesek import kerdes_lista
+
+def indit_jatek():
+    print("Kezdődik a játék!")
+    for kerdes in kerdes_lista:
+        print(kerdes)
+
+indit_jatek()
+```
+
+```python
+# kerdesek.py - Itt tároljuk a kérdéseket
+kerdes_lista = [
+    "Mi a kedvenc színed?",
+    "Szereted a pizzát?",
+    "Hány éves vagy?"
+]
+```
+
+## Hogyan működik?
+
+1. Minden fájl egy kis doboz 📦
+2. Az `import` paranccsal kinyitjuk a dobozt
+3. Használhatjuk ami benne van!
+
+</section>
+
+<section>
+
+# Mi történik a kóddal?
+
+Képzeld el, hogy megírtál egy szuper programot! 🎮 De hogyan lesz ebből olyan alkalmazás, amit a barátaid is tudnak használni a saját számítógépükön?
+
+## A kód útja
+
+1. **Forráskód** ➡️ Ez amit te írsz (pl. `.py` fájlok)
+2. **Fordítás/Értelmezés** ➡️ A számítógép számára érthető formába alakítás
+3. **Csomagolás** ➡️ Minden szükséges dolog összegyűjtése egy csomagba
+4. **Terjesztés** ➡️ A program eljuttatása más felhasználókhoz
+
+## Miért van szükség csomagolásra?
+
+Gondolj egy videojátékra 🎮:
+- Nem csak a játék kódját tartalmazza
+- Kellenek még:
+  - Képek, hangok, szövegek
+  - Extra programok (függőségek)
+  - Beállítások
+
+</section>
+
+<section>
+
+# Hogyan lesz a programból alkalmazás?
+
+Képzeljük el, hogy sütit sütünk! 🍪
+
+## Mi kell hozzá?
+
+1. **A recept (forráskód)** 📝
+   - A Python fájljaink (`.py`)
+   - Képek, hangok, szövegek
+
+2. **Hozzávalók (eszközök)** 🧰
+   - PyInstaller - Ez csinál a programból alkalmazást
+   - Extra programok, amiket használunk
+
+## Hogyan csináljuk?
+
+```python
+# 1. Telepítjük a PyInstaller-t
+pip install pyinstaller
+
+# 2. Elkészítjük az alkalmazást
+pyinstaller --onefile jatek.py
+```
+
+És kész is! 🎉 A `dist` mappában megtalálod az alkalmazást:
+
+</section>
+
+<section>
+
+# Mit kapsz végül? 🎁
+
+Attól függ, milyen gépen használod:
+- Windowson: Egy `.exe` fájl
+- Macen: Egy `.app` program
+- Linuxon: Egy futtatható program
+
+## Próbáljuk ki!
+
+Csináljunk egy egyszerű kvíz játékot:
+
+1. **Készíts két fájlt:**
+
+```python
+# kviz.py
+from kerdesek import kerdesek
+
+def jatek():
+    pontok = 0
+    for k in kerdesek:
+        print(k["kérdés"])
+        valasz = input("Te válaszod: ")
+        if valasz == k["válasz"]:
+            print("Helyes! 🌟")
+            pontok += 1
+        else:
+            print("Nem talált! 😢")
+    print(f"Pontjaid: {pontok}")
+
+jatek()
+```
+
+```python
+# kerdesek.py
+kerdesek = [
+    {
+        "kérdés": "Mi a Python kabalája?",
+        "válasz": "kígyó"
+    },
+    {
+        "kérdés": "Melyik a legfinomabb fagyi?",
+        "válasz": "csoki"
+    }
+]
+```
+
+2. **Csomagold be:**
+```python
+pyinstaller --onefile kviz.py
+```
+
+Kész is! Most már bárkinek elküldheted a játékot! 🎮
+
+</section>
