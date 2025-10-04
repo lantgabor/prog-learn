@@ -19,11 +19,6 @@
 
 # Több fájlos programok
 
-Képzeld el, hogy egy nagy LEGO készletet építesz! 🏗️
-Minden kis zacskóban más-más elemek vannak, amik együtt adják ki a teljes modellt.
-
-A Python programoknál is ugyanígy működik:
-
 ```python
 # jatek.py - Itt van a fő játék
 from kerdesek import kerdes_lista
@@ -55,20 +50,27 @@ kerdes_lista = [
 
 <section>
 
-# Mi történik a kóddal?
+# Fordítás (Compiling)
 
-Képzeld el, hogy megírtál egy szuper programot! 🎮 De hogyan lesz ebből olyan alkalmazás, amit a barátaid is tudnak használni a saját számítógépükön?
+Hogyan lesz a kód a számítógép számára érthető.
 
-## A kód útja
+1. Compiled languages: Szó szerint érthető fordítás, latinról &rarr; angolra.
+2. Interpreted languages: Melleted ül valaki aki helyben fordít.
 
-1. **Forráskód** ➡️ Ez amit te írsz (pl. `.py` fájlok)
-2. **Fordítás/Értelmezés** ➡️ A számítógép számára érthető formába alakítás
-3. **Csomagolás** ➡️ Minden szükséges dolog összegyűjtése egy csomagba
-4. **Terjesztés** ➡️ A program eljuttatása más felhasználókhoz
+Mi történik a kóddal?
 
-## Miért van szükség csomagolásra?
+Képzeld el, hogy megírtál egy szuper programot, de hogyan lesz ebből olyan alkalmazás, amit a barátaid is tudnak használni a saját számítógépükön?
 
-Gondolj egy videojátékra 🎮:
+<img src="img/compiler.png" className="float" />
+
+1. **Forráskód** &rarr; Ez amit te írsz (pl. `.py` fájlok)
+2. **Fordítás/Értelmezés** &rarr; A számítógép számára érthető formába alakítás
+3. **Csomagolás** &rarr; Minden szükséges dolog összegyűjtése egy csomagba
+4. **Terjesztés** &rarr; A program eljuttatása más felhasználókhoz
+
+## Mit csomagolunk valójában?
+
+Egy játék esetén:
 - Nem csak a játék kódját tartalmazza
 - Kellenek még:
   - Képek, hangok, szövegek
@@ -81,15 +83,13 @@ Gondolj egy videojátékra 🎮:
 
 # Hogyan lesz a programból alkalmazás?
 
-Képzeljük el, hogy sütit sütünk! 🍪
-
 ## Mi kell hozzá?
 
-1. **A recept (forráskód)** 📝
+1. **A recept (forráskód)**
    - A Python fájljaink (`.py`)
    - Képek, hangok, szövegek
 
-2. **Hozzávalók (eszközök)** 🧰
+2. **Fordító (eszközök)**
    - PyInstaller - Ez csinál a programból alkalmazást
    - Extra programok, amiket használunk
 
@@ -120,46 +120,25 @@ Attól függ, milyen gépen használod:
 
 Csináljunk egy egyszerű kvíz játékot:
 
-1. **Készíts két fájlt:**
+1. **Készíts egy python fájlt:**
 
 ```python
-# kviz.py
-from kerdesek import kerdesek
+def main():
+    print("Hello, World!")
 
-def jatek():
-    pontok = 0
-    for k in kerdesek:
-        print(k["kérdés"])
-        valasz = input("Te válaszod: ")
-        if valasz == k["válasz"]:
-            print("Helyes! 🌟")
-            pontok += 1
-        else:
-            print("Nem talált! 😢")
-    print(f"Pontjaid: {pontok}")
+if __name__ == "__main__":
+    main()
+    input("\nPress Enter to exit...")
 
-jatek()
 ```
 
-```python
-# kerdesek.py
-kerdesek = [
-    {
-        "kérdés": "Mi a Python kabalája?",
-        "válasz": "kígyó"
-    },
-    {
-        "kérdés": "Melyik a legfinomabb fagyi?",
-        "válasz": "csoki"
-    }
-]
-```
+# Fontos! Az `input()` a program végén azért szükséges, mivel a program végeztével azonnal kilépünk a **console**-ból!
 
 2. **Csomagold be:**
 ```python
 pyinstaller --onefile kviz.py
 ```
 
-Kész is! Most már bárkinek elküldheted a játékot! 🎮
+Kész is! Most már bárkinek elküldheted!
 
 </section>
