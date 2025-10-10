@@ -42,7 +42,7 @@ kerdes_lista = [
 
 ## Hogyan működik?
 
-1. Minden fájl egy kis doboz 📦
+1. Minden fájl egy kis doboz
 2. Az `import` paranccsal kinyitjuk a dobozt
 3. Használhatjuk ami benne van!
 
@@ -83,13 +83,15 @@ Egy játék esetén:
 
 # Hogyan lesz a programból alkalmazás?
 
+Képzeljük el, hogy sütit sütünk!
+
 ## Mi kell hozzá?
 
 1. **A recept (forráskód)**
    - A Python fájljaink (`.py`)
    - Képek, hangok, szövegek
 
-2. **Fordító (eszközök)**
+2. **Hozzávalók (eszközök)**
    - PyInstaller - Ez csinál a programból alkalmazást
    - Extra programok, amiket használunk
 
@@ -109,7 +111,7 @@ pyinstaller --onefile jatek.py
 
 <section>
 
-# Mit kapsz végül? 🎁
+# Mit kapunk végül?
 
 Attól függ, milyen gépen használod:
 - Windowson: Egy `.exe` fájl
@@ -120,7 +122,7 @@ Attól függ, milyen gépen használod:
 
 Csináljunk egy egyszerű kvíz játékot:
 
-1. **Készíts egy python fájlt:**
+1. **Készítsünk két python fájlt:**
 
 ```python
 def main():
@@ -134,11 +136,11 @@ if __name__ == "__main__":
 
 **Fontos!** Az `input()` a program végén azért szükséges, mivel a program végeztével azonnal kilépünk a **console**-ból!
 
-2. **Csomagold be:**
+2. **Csomagjuk be:**
 ```python
 pyinstaller --onefile kviz.py
 ```
 
-Kész is! Most már bárkinek elküldheted!
+Kész is!
 
 </section>

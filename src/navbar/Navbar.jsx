@@ -25,6 +25,7 @@ function Navbar() {
             { label: "6. óra", path: "/course/e6" },
             { label: "7. óra", path: "/course/e7" },
             { label: "8. óra", path: "/course/e8" },
+            { label: "9. óra", path: "/course/e9" },
           ]}
           isOpen={openMenu === "course"}
           onToggle={() => toggleMenu("course")}
