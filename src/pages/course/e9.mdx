@@ -33,6 +33,13 @@ class ClassName:
         # Method implementation
 ```
 
+```py
+myinstance = ClassName()
+
+myinstance.method1()
+myinstance.method2()
+```
+
 </section>
 
 <section>
@@ -48,6 +55,12 @@ class Dog:
         print(f"{self.name} says woof!")
 ```
 
+```py
+dog1 = Dog("Bodri")
+
+dog1.bark() # Bodri says woof!
+```
+
 - A `class` az osztályt definiálja.
 - Az `__init__()` a konstruktor, automatikusan lefut, amikor egy objektumot létrehozunk.
 - A `self` az aktuális példányra utal.
@@ -55,3 +68,54 @@ class Dog:
 Minden objektumnak saját adatai vannak.
 
 </section>
+
+<section>
+
+# Mire lesz jó nekünk az `class` a továbbiakban?
+
+Megismerkedünk néhány alapvető tulajdonságávla az osztályoknak.
+
+# Öröklés (inheritance)
+
+```py
+class Animal:
+    def speak(self):
+        return ""
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+class Cow(Animal):
+    def speak(self):
+        return "Moo!"
+```
+
+# Polymorphizmus (Polymorphism)
+
+```py
+animals = [Dog(), Cat(), Cow()]
+
+for animal in animals:
+    print(animal.speak())
+```
+
+# Composition
+
+```py
+class Engine:
+    def __init__(self, type):
+        self.type = type
+
+class Car:
+    def __init__(self):
+        self.engine = Engine("v8")  # composition
+```
+
+</section>
+
+
