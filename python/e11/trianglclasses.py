@@ -45,19 +45,49 @@ class Triangle:
         points = [self.p1.to_tuple(), self.p2.to_tuple(), self.p3.to_tuple()]
         pygame.draw.polygon(screen, self.color, points)
 
+        # Initialize font
+        font = pygame.font.Font(None, 20)  # Default font, size 20
+
+        # Draw vertex points and their coordinates
+        for i, point in enumerate([self.p1, self.p2, self.p3], 1):
+            # Draw coordinate text with white background for better visibility
+            text = f"P{i}({int(point.x)}, {int(point.y)})"
+            text_surface = font.render(text, True, (0, 0, 0))
+            text_rect = text_surface.get_rect(topleft=(point.x + 10, point.y + 10))
+
+            # Draw white background
+            background_rect = text_rect.inflate(10, 6)
+            pygame.draw.rect(screen, (255, 255, 255), background_rect)
+            pygame.draw.rect(screen, (200, 200, 200), background_rect, 1)
+
+            # Draw text
+            screen.blit(text_surface, text_rect)
+
         if draw_midpoints:
             # Draw midpoints as small circles
             midpoint_color = (0, 0, 255)  # Blue color for midpoints
             radius = 5
-            pygame.draw.circle(
-                screen, midpoint_color, self.midpoint_a.to_tuple(), radius
-            )
-            pygame.draw.circle(
-                screen, midpoint_color, self.midpoint_b.to_tuple(), radius
-            )
-            pygame.draw.circle(
-                screen, midpoint_color, self.midpoint_c.to_tuple(), radius
-            )
+
+            # Draw and label midpoints
+            for i, midpoint in enumerate(
+                [self.midpoint_a, self.midpoint_b, self.midpoint_c], 1
+            ):
+                pygame.draw.circle(screen, midpoint_color, midpoint.to_tuple(), radius)
+
+                # Draw midpoint coordinates
+                text = f"M{i}({int(midpoint.x)}, {int(midpoint.y)})"
+                text_surface = font.render(text, True, midpoint_color)
+                text_rect = text_surface.get_rect(
+                    topleft=(midpoint.x + 10, midpoint.y + 10)
+                )
+
+                # Draw white background
+                background_rect = text_rect.inflate(10, 6)
+                pygame.draw.rect(screen, (255, 255, 255), background_rect)
+                pygame.draw.rect(screen, (200, 200, 200), background_rect, 1)
+
+                # Draw text
+                screen.blit(text_surface, text_rect)
 
             # Draw lines to midpoints (medians)
             pygame.draw.line(
@@ -82,15 +112,30 @@ class Triangle:
                 1,
             )
 
-            # Draw centroid
+            # Draw and label centroid
             centroid = self.calculate_centroid()
             pygame.draw.circle(
                 screen, (0, 255, 0), centroid.to_tuple(), radius
             )  # Green centroid
 
+            # Draw centroid coordinates
+            text = f"C({int(centroid.x)}, {int(centroid.y)})"
+            text_surface = font.render(text, True, (0, 155, 0))
+            text_rect = text_surface.get_rect(
+                topleft=(centroid.x + 10, centroid.y + 10)
+            )
+
+            # Draw white background
+            background_rect = text_rect.inflate(10, 6)
+            pygame.draw.rect(screen, (255, 255, 255), background_rect)
+            pygame.draw.rect(screen, (200, 200, 200), background_rect, 1)
+
+            # Draw text
+            screen.blit(text_surface, text_rect)
+
 
 class Game:
-    def __init__(self, width=400, height=400):
+    def __init__(self, width=1280, height=1024):
         pygame.init()
         self.screen = pygame.display.set_mode((width, height))
         pygame.display.set_caption("Triangle with Midpoints")
@@ -103,7 +148,7 @@ class Game:
 
         # Create triangle
         p1 = Point(0, 0)  # Top point
-        p2 = Point(width // 2 , height // 2)  # Bottom left
+        p2 = Point(width // 2, height // 2)  # Bottom left
         p3 = Point(100, 200)  # Bottom right
         self.triangle = Triangle(p1, p2, p3)
 
