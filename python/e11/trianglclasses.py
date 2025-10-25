@@ -46,7 +46,7 @@ class Triangle:
         pygame.draw.polygon(screen, self.color, points)
 
         # Initialize font
-        font = pygame.font.Font(None, 20)  # Default font, size 20
+        font = pygame.font.Font(None, 24)  # Default font, size 24
 
         # Draw vertex points and their coordinates
         for i, point in enumerate([self.p1, self.p2, self.p3], 1):
@@ -138,19 +138,18 @@ class Game:
     def __init__(self, width=1280, height=1024):
         pygame.init()
         self.screen = pygame.display.set_mode((width, height))
-        pygame.display.set_caption("Triangle with Midpoints")
         self.width = width
         self.height = height
 
         # Colors
         self.BLACK = (0, 0, 0)
         self.WHITE = (255, 255, 255)
+        self.RED = (255, 0, 0)
 
-        # Create triangle
-        p1 = Point(0, 0)  # Top point
-        p2 = Point(width // 2, height // 2)  # Bottom left
-        p3 = Point(100, 200)  # Bottom right
-        self.triangle = Triangle(p1, p2, p3)
+        # Initialize points collection
+        self.points = []
+        self.triangle = None
+        self.font = pygame.font.Font(None, 24)
 
     def draw_axes(self):
         """Draw coordinate axes"""
@@ -169,16 +168,52 @@ class Game:
             2,
         )  # Y-axis
 
+    def draw_collected_points(self):
+        """Draw points that have been collected so far"""
+        for i, point in enumerate(self.points, 1):
+            # Draw point
+            pygame.draw.circle(self.screen, self.RED, (point.x, point.y), 5)
+            # Draw label
+            text = f"P{i}({int(point.x)}, {int(point.y)})"
+            text_surface = self.font.render(text, True, self.BLACK)
+            text_rect = text_surface.get_rect(topleft=(point.x + 10, point.y + 10))
+            # Draw white background for text
+            background_rect = text_rect.inflate(10, 6)
+            pygame.draw.rect(self.screen, self.WHITE, background_rect)
+            pygame.draw.rect(self.screen, (200, 200, 200), background_rect, 1)
+            # Draw text
+            self.screen.blit(text_surface, text_rect)
+
+    def handle_click(self, pos):
+        """Handle mouse click event"""
+        if len(self.points) < 3:
+            self.points.append(Point(pos[0], pos[1]))
+            if len(self.points) == 3:
+                self.triangle = Triangle(*self.points)
+
     def run(self):
         running = True
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    self.handle_click(event.pos)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+                    # Reset triangle on 'R' key press
+                    self.points = []
+                    self.triangle = None
+                    pygame.display.set_caption("Click 3 points to create a triangle")
 
             self.screen.fill(self.WHITE)
             self.draw_axes()
-            self.triangle.draw(self.screen)
+
+            if self.triangle:
+                self.triangle.draw(self.screen)
+            else:
+                self.draw_collected_points()
+                # self.draw_instruction()
+
             pygame.display.flip()
 
         pygame.quit()
