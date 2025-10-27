@@ -135,7 +135,7 @@ class Triangle:
 
 
 class Game:
-    def __init__(self, width=1280, height=1024):
+    def __init__(self, width=600, height=800):
         pygame.init()
         self.screen = pygame.display.set_mode((width, height))
         self.width = width
