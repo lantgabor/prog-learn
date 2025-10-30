@@ -75,45 +75,55 @@ class Game:
         self.BG = (255, 255, 255)
         self.FG = (0, 0, 0)
 
-        self.polygon = Polygon()
-        self.font = pygame.font.Font(None, 20)
+        self.polygons = []
+        self.current_polygon = Polygon()
 
-        pygame.display.set_caption(
-            "Polygon Drawer — Left-click to add points, D to close & fill, R to reset"
-        )
+        # Animation properties
+        self.rotation_angle = 0
+        self.rect_size = (100, 60)  # width and height of rectangle
+        self.rect_color = (50, 120, 200)
+        self.rotation_speed = 2  # degrees per frame
+
+        pygame.display.set_caption("Polygon Drawer")
 
     def handle_click(self, pos: Tuple[int, int]) -> None:
-        if self.polygon.closed:
-            # start a new polygon if the previous is closed
-            self.polygon = Polygon()
-        self.polygon.add_point(Point(pos[0], pos[1]))
+        if not self.current_polygon.closed:
+            self.current_polygon.add_point(Point(pos[0], pos[1]))
 
     def handle_key(self, key: int) -> None:
-        if key == pygame.K_d:
-            closed = self.polygon.close()
-            if not closed:
-                pygame.display.set_caption(
-                    "Need at least 3 points to close the polygon — press R to reset"
-                )
-            else:
-                pygame.display.set_caption(
-                    "Polygon closed and filled — left-click to start a new polygon, R to reset"
-                )
+        if key == pygame.K_d and not self.current_polygon.closed:
+            if self.current_polygon.close():
+                self.polygons.append(self.current_polygon)
+                self.current_polygon = Polygon()
         elif key == pygame.K_r:
-            self.polygon.reset()
-            pygame.display.set_caption(
-                "Polygon Drawer — Left-click to add points, D to close & fill, R to reset"
-            )
+            if not self.current_polygon.closed:
+                self.current_polygon.reset()
+            else:
+                self.polygons = []
+                self.current_polygon = Polygon()
 
-    def draw_instructions(self) -> None:
-        lines = [
-            "Left-click: add point",
-            "D: close & fill polygon (needs >=3 points)",
-            "R: reset/current polygon",
-        ]
-        for i, line in enumerate(lines):
-            surf = self.font.render(line, True, self.FG)
-            self.screen.blit(surf, (8, 8 + i * 20))
+    def draw_rotating_rectangle(self):
+        # Create a surface for the rectangle
+        rect_surface = pygame.Surface(self.rect_size, pygame.SRCALPHA)
+        pygame.draw.rect(rect_surface, self.rect_color, (0, 0, *self.rect_size))
+
+        # Get the rectangle's center position
+        center_x = self.width // 2
+        center_y = self.height // 2
+
+        # Rotate the surface
+        rotated_surface = pygame.transform.rotate(
+            rect_surface, self.rotation_angle
+        )
+
+        # Get the new rect centered at the same position
+        rect = rotated_surface.get_rect(center=(center_x, center_y))
+
+        # Draw the rotated rectangle
+        self.screen.blit(rotated_surface, rect)
+
+        # Update rotation for next frame
+        self.rotation_angle = (self.rotation_angle + self.rotation_speed) % 360
 
     def run(self) -> None:
         clock = pygame.time.Clock()
@@ -130,16 +140,21 @@ class Game:
 
             self.screen.fill(self.BG)
 
-            # Draw current polygon
-            self.polygon.draw(self.screen)
+            # Draw all completed polygons
+            for polygon in self.polygons:
+                polygon.draw(self.screen)
 
-            # Draw preview line from last point to mouse if polygon is not closed
-            if not self.polygon.closed and self.polygon.points:
+            # Draw current polygon
+            self.current_polygon.draw(self.screen)
+
+            # Draw preview line from last point to mouse if current polygon is not closed
+            if not self.current_polygon.closed and self.current_polygon.points:
                 mx, my = pygame.mouse.get_pos()
-                last = self.polygon.points[-1].to_int_tuple()
+                last = self.current_polygon.points[-1].to_int_tuple()
                 pygame.draw.line(self.screen, self.FG, last, (mx, my), 1)
 
-            self.draw_instructions()
+            # Draw the rotating rectangle
+            self.draw_rotating_rectangle()
 
             pygame.display.flip()
             clock.tick(60)
