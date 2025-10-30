@@ -1,0 +1,416 @@
+<section>
+<>{new Date("12/11/2025").toLocaleDateString()}</>
+# PyGame alapok
+
+<img src="img/pygame-logo.png" alt="Pygame Logo" className="float" width="25%" />
+
+## Mi az a PyGame?
+
+A PyGame egy Python könyvtár, ami játékok készítésére lett tervezve. A [hivatalos dokumentáció](https://www.pygame.org/docs/) részletes útmutatót és referenciát biztosít. Segít:
+- Grafikák megjelenítésében ([pygame.draw dokumentáció](https://www.pygame.org/docs/ref/draw.html))
+- Hangok lejátszásában ([pygame.mixer dokumentáció](https://www.pygame.org/docs/ref/mixer.html))
+- Felhasználói input kezelésében ([pygame.event dokumentáció](https://www.pygame.org/docs/ref/event.html))
+
+## Koordinátarendszer
+
+A PyGame a képernyő bal felső sarkától számítja a koordinátákat:
+- X tengely: balról jobbra növekszik (0-tól ablak szélességéig)
+- Y tengely: fentről lefelé növekszik (0-tól ablak magasságáig)
+- A (0,0) pont a képernyő bal felső sarka
+
+```python
+"""
+(0,0)     (800,0)
+   +----------->  x
+   |
+   |
+   |
+   v
+   y    (800,600)
+"""
+```
+
+## Első PyGame program
+
+```python
+import pygame
+pygame.init()
+
+# Ablak létrehozása
+ablak = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Első játékom")
+
+# Játék ciklus
+fut = True
+while fut:
+    # Események kezelése
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    # Képernyő törlése
+    ablak.fill((255, 255, 255))  # Fehér háttér
+
+    # Frissítés
+    pygame.display.flip()
+
+# Kilépés
+pygame.quit()
+```
+
+## Alakzatok rajzolása
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+<div style={{ flex: 1 }}>
+
+### **Téglalap**
+
+```python
+# (x, y, szélesség, magasság)
+pygame.draw.rect(ablak, (255, 0, 0),
+    (100, 100, 50, 30))
+# Ez egy piros téglalapot rajzol:
+# - Bal felső sarka: (100,100)
+# - Szélessége: 50 pixel
+# - Magassága: 30 pixel
+```
+
+
+</div>
+<div style={{ flex: 1 }}>
+
+### **Kör**
+
+```python
+# (x, y) középpont, sugár
+pygame.draw.circle(ablak, (0, 255, 0),
+    (400, 300), 40)
+# Ez egy zöld kört rajzol:
+# - Középpontja: (400,300)
+# - Sugara: 40 pixel
+# - Átmérője: 80 pixel
+```
+
+
+</div>
+</div>
+
+## Mozgatás és animáció
+
+Objektum mozgatása billentyűzettel:
+
+```python
+# Globális változók
+x = 400  # pozíció x
+y = 300  # pozíció y
+sebesseg = 5
+
+# Játék ciklusban:
+keys = pygame.key.get_pressed()
+if keys[pygame.K_LEFT]:
+    x -= sebesseg
+if keys[pygame.K_RIGHT]:
+    x += sebesseg
+if keys[pygame.K_UP]:
+    y -= sebesseg
+if keys[pygame.K_DOWN]:
+    y += sebesseg
+
+# Rajzolás az új pozícióra
+pygame.draw.circle(ablak, (255, 0, 0), (x, y), 20)
+```
+
+A mozgás a fizikai sebesség = elmozdulás/idő elvén alapul
+Itt minden képkockában (frame) elmozdítjuk az objektumot:
+- $x += sebesseg  \rightarrow  \Delta x = v *  \Delta t $ (ahol $\Delta t $ = 1 frame)
+- Egyenletes mozgás: állandó sebesség
+- Gyorsulás: növekvő sebesség (sebesseg += gyorsulas)
+
+</section>
+
+<section>
+
+# Sprite-ok használata
+
+# Mi az a Sprite?
+
+A Sprite egy olyan objektum, ami:
+- Képet tartalmaz (lehet beépített vagy saját)
+- Pozícióval rendelkezik (rect tulajdonság)
+- Mozgatható (update() metódussal)
+- Ütközést tud detektálni (collide metódusokkal)
+
+## Saját képek használata sprite-okhoz
+
+```python
+class Jatekos(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        # Kép betöltése és méretezése
+        self.image = pygame.image.load("player.png")
+        self.image = pygame.transform.scale(
+            self.image, (50, 50))
+        # Átlátszó háttér kezelése
+        self.image.set_colorkey((0, 0, 0))
+        self.rect = self.image.get_rect()
+
+# Sprite-ok animálása
+class AnimaltJatekos(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.frames = []  # Képkockák listája
+        for i in range(4):  # 4 képkockás animáció
+            img = pygame.image.load(f"player_{i}.png")
+            self.frames.append(img)
+        self.current_frame = 0
+        self.image = self.frames[0]
+        self.rect = self.image.get_rect()
+
+    def animate(self):
+        # Képkockák váltása
+        self.current_frame = (self.current_frame + 1) % len(self.frames)
+        self.image = self.frames[self.current_frame]
+```
+
+## Sprite létrehozása
+
+```python
+class Jatekos(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        # Kép betöltése
+        self.image = pygame.Surface([50, 50])
+        self.image.fill((255, 0, 0))
+        self.rect = self.image.get_rect()
+
+    def update(self):
+        # Mozgatás
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.rect.x -= 5
+        if keys[pygame.K_RIGHT]:
+            self.rect.x += 5
+```
+
+## Sprite használata
+
+```python
+# Sprite csoport létrehozása
+all_sprites = pygame.sprite.Group()
+jatekos = Jatekos()
+all_sprites.add(jatekos)
+
+# Játék ciklusban:
+all_sprites.update()
+all_sprites.draw(ablak)
+```
+
+</section>
+
+<section>
+
+# Ütközés detektálás
+
+## Sprite-ok között
+
+```python
+class Erme(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.Surface([20, 20])
+        self.image.fill((255, 255, 0))
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+# Ütközés ellenőrzése
+ermek = pygame.sprite.Group()
+# ... érmék hozzáadása ...
+
+# Játék ciklusban:
+talalatok = pygame.sprite.spritecollide(
+    jatekos, ermek, True)
+if talalatok:
+    pontszam += len(talalatok)
+```
+
+## Téglalap ütközés
+
+```python
+# Két téglalap ütközésének vizsgálata
+teglalap1 = pygame.Rect(x1, y1, w1, h1)
+teglalap2 = pygame.Rect(x2, y2, w2, h2)
+
+if teglalap1.colliderect(teglalap2):
+    print("Ütközés történt!")
+```
+
+</section>
+
+<section>
+
+# Képek és hangok
+
+## Kép betöltése
+
+```python
+kep = pygame.image.load("jatekos.png")
+# Méretezés
+kep = pygame.transform.scale(kep, (50, 50))
+```
+
+## Hang lejátszása
+
+```python
+pygame.mixer.init()
+hang = pygame.mixer.Sound("effect.wav")
+hang.play()
+```
+
+## Háttérzene
+
+```python
+pygame.mixer.music.load("zene.mp3")
+pygame.mixer.music.play(-1)  # -1: végtelen ismétlés
+```
+
+</section>
+
+<section>
+
+# Gyakorló feladatok
+
+### 1. Mozgó labda
+
+Készíts egy programot, amiben egy labda pattog a képernyőn!
+
+<details>
+<summary>Megoldás</summary>
+
+```python
+import pygame
+pygame.init()
+
+ablak = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+
+x = 400
+y = 300
+dx = 5  # x irányú sebesség
+dy = 5  # y irányú sebesség
+
+fut = True
+while fut:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    # Mozgatás
+    x += dx
+    y += dy
+
+    # Falakról visszapattanás
+    if x > 780 or x < 20:
+        dx *= -1
+    if y > 580 or y < 20:
+        dy *= -1
+
+    # Rajzolás
+    ablak.fill((255, 255, 255))
+    pygame.draw.circle(ablak, (255, 0, 0),
+        (x, y), 20)
+    pygame.display.flip()
+
+    clock.tick(60)
+
+pygame.quit()
+```
+
+</details>
+
+### 2. Érmegyűjtő játék
+
+Készíts egy egyszerű játékot, ahol a játékosnak érméket kell összegyűjtenie!
+
+<details>
+<summary>Megoldás</summary>
+
+```python
+import pygame
+import random
+
+class Jatekos(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface([30, 30])
+        self.image.fill((255, 0, 0))
+        self.rect = self.image.get_rect()
+        self.rect.x = 400
+        self.rect.y = 300
+
+    def update(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.rect.x -= 5
+        if keys[pygame.K_RIGHT]:
+            self.rect.x += 5
+        if keys[pygame.K_UP]:
+            self.rect.y -= 5
+        if keys[pygame.K_DOWN]:
+            self.rect.y += 5
+
+class Erme(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface([20, 20])
+        self.image.fill((255, 255, 0))
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(780)
+        self.rect.y = random.randrange(580)
+
+pygame.init()
+ablak = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+
+all_sprites = pygame.sprite.Group()
+ermek = pygame.sprite.Group()
+jatekos = Jatekos()
+all_sprites.add(jatekos)
+
+for i in range(10):
+    erme = Erme()
+    all_sprites.add(erme)
+    ermek.add(erme)
+
+pontszam = 0
+fut = True
+
+while fut:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    all_sprites.update()
+
+    talalatok = pygame.sprite.spritecollide(
+        jatekos, ermek, True)
+    pontszam += len(talalatok)
+
+    ablak.fill((255, 255, 255))
+    all_sprites.draw(ablak)
+
+    # Pontszám kiírása
+    font = pygame.font.Font(None, 36)
+    szoveg = font.render(f'Pontok: {pontszam}',
+        True, (0, 0, 0))
+    ablak.blit(szoveg, (10, 10))
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+```
+
+</details>
+
+</section>
