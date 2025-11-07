@@ -1,12 +1,20 @@
+import ColorPicker from "./colorPicker.jsx";
+
 <section>
 <>{new Date("12/11/2025").toLocaleDateString()}</>
 # PyGame alapok
 
-<img src="img/pygame-logo.png" alt="Pygame Logo" className="float" width="25%" />
+<img
+  src="img/pygame-logo.png"
+  alt="Pygame Logo"
+  className="float"
+  width="25%"
+/>
 
 ## Mi az a PyGame?
 
 A PyGame egy Python könyvtár, ami játékok készítésére lett tervezve. A [hivatalos dokumentáció](https://www.pygame.org/docs/) részletes útmutatót és referenciát biztosít. Segít:
+
 - Grafikák megjelenítésében ([pygame.draw dokumentáció](https://www.pygame.org/docs/ref/draw.html))
 - Hangok lejátszásában ([pygame.mixer dokumentáció](https://www.pygame.org/docs/ref/mixer.html))
 - Felhasználói input kezelésében ([pygame.event dokumentáció](https://www.pygame.org/docs/ref/event.html))
@@ -14,6 +22,7 @@ A PyGame egy Python könyvtár, ami játékok készítésére lett tervezve. A [
 ## Koordinátarendszer
 
 A PyGame a képernyő bal felső sarkától számítja a koordinátákat:
+
 - X tengely: balról jobbra növekszik (0-tól ablak szélességéig)
 - Y tengely: fentről lefelé növekszik (0-tól ablak magasságáig)
 - A (0,0) pont a képernyő bal felső sarka
@@ -70,11 +79,11 @@ pygame.quit()
 pygame.draw.rect(ablak, (255, 0, 0),
     (100, 100, 50, 30))
 # Ez egy piros téglalapot rajzol:
+# - Színe: RGB: (Red, Green, Blue) -> Piros (255, 0, 0)
 # - Bal felső sarka: (100,100)
 # - Szélessége: 50 pixel
 # - Magassága: 30 pixel
 ```
-
 
 </div>
 <div style={{ flex: 1 }}>
@@ -86,14 +95,139 @@ pygame.draw.rect(ablak, (255, 0, 0),
 pygame.draw.circle(ablak, (0, 255, 0),
     (400, 300), 40)
 # Ez egy zöld kört rajzol:
+# - Színe: RGB: (Red, Green, Blue) -> Zöld (0, 255, 0)
 # - Középpontja: (400,300)
 # - Sugara: 40 pixel
 # - Átmérője: 80 pixel
 ```
 
+</div>
+</div>
+
+A színeket RGB értékekkel lehet megadni. Például:
+
+- Piros: (255, 0, 0)
+- Zöld: (0, 255, 0)
+- Kék: (0, 0, 255)
+
+Az értékük 0 és 255 közötti egész számok lehetnek.
+
+<ColorPicker />
+
+# Rajozlás és az egyszerű alakzatok
+
+A `pygame.draw` modul alapvető rajzolási függvényeket biztosít, amelyekkel egyszerűen rajzolhatunk geometriai alakzatokat a játék képernyőjére. A leggyakrabban használt alakzatok:
+
+<div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: 1.5, minWidth: '400px' }}>
+
+### **Téglalap (rect)**
+`pygame.draw.rect(ablak, szín, (x, y, szélesség, magasság))`
+
+```python
+pygame.draw.rect(ablak, (255, 0, 0), (100, 100, 50, 30))
+```
+
+</div>
+<div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+<svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
+  <rect width="200" height="200" fill="#f5f5f5"/>
+  <rect x="50" y="50" width="50" height="30" fill="#ff0000"/>
+</svg>
 
 </div>
 </div>
+
+<div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: 1.5, minWidth: '400px' }}>
+
+### **Kör (circle)**
+`pygame.draw.circle(ablak, szín, (x, y), sugár)`
+
+```python
+pygame.draw.circle(ablak, (0, 255, 0), (400, 300), 40)
+```
+
+</div>
+<div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+<svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
+  <rect width="200" height="200" fill="#f5f5f5"/>
+  <circle cx="100" cy="100" r="40" fill="#00ff00"/>
+</svg>
+
+</div>
+</div>
+
+<div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: 1.5, minWidth: '400px' }}>
+
+### **Vonal (line)**
+`pygame.draw.line(ablak, szín, (x1, y1), (x2, y2), vastagság)`
+
+```python
+pygame.draw.line(ablak, (0, 0, 255), (100, 100), (200, 200), 3)
+```
+
+</div>
+<div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+<svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
+  <rect width="200" height="200" fill="#f5f5f5"/>
+  <line x1="50" y1="50" x2="150" y2="150" stroke="#0000ff" strokeWidth="3"/>
+</svg>
+
+</div>
+</div>
+
+<div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: 1.5, minWidth: '400px' }}>
+
+### **Sokszög (polygon)**
+
+```python
+pontok = [(100, 100), (200, 100), (150, 200)]
+pygame.draw.polygon(ablak, (255, 0, 255), pontok)
+```
+
+</div>
+<div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+<svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
+  <rect width="200" height="200" fill="#f5f5f5"/>
+  <polygon points="50,50 100,50 75,120" fill="#ff00ff"/>
+</svg>
+
+</div>
+</div>
+
+<div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: 1.5, minWidth: '400px' }}>
+
+### **Ellipszis (ellipse)**
+`pygame.draw.ellipse(ablak, szín, (x, y, szélesség, magasság))`
+
+```python
+pygame.draw.ellipse(ablak, (100, 100, 255), (50, 50, 100, 200))
+```
+
+</div>
+<div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+<svg width="200" height="250" viewBox="0 0 200 250" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
+  <rect width="200" height="250" fill="#f5f5f5"/>
+  <ellipse cx="100" cy="125" rx="50" ry="100" fill="#6464ff"/>
+</svg>
+
+</div>
+</div>
+
+Az összes rajzolási függvény közös paraméterei:
+- **ablak**: a rajzolási felület
+- **szín**: RGB érték (piros, zöld, kék komponensek 0-255 között)
+- **pozíció és méret**: a képernyőn való elhelyezkedés
+
 
 ## Mozgatás és animáció
 
@@ -122,11 +256,146 @@ pygame.draw.circle(ablak, (255, 0, 0), (x, y), 20)
 
 A mozgás a fizikai sebesség = elmozdulás/idő elvén alapul
 Itt minden képkockában (frame) elmozdítjuk az objektumot:
-- $x += sebesseg  \rightarrow  \Delta x = v *  \Delta t $ (ahol $\Delta t $ = 1 frame)
+
+- $x += sebesseg \rightarrow \Delta x = v \* \Delta t $ (ahol $\Delta t $ = 1 frame)
 - Egyenletes mozgás: állandó sebesség
 - Gyorsulás: növekvő sebesség (sebesseg += gyorsulas)
 
 </section>
+
+export function RGBColorPicker() {
+  const [red, setRed] = React.useState(255);
+  const [green, setGreen] = React.useState(0);
+  const [blue, setBlue] = React.useState(0);
+
+const rgbColor = `rgb(${red}, ${green}, ${blue})`;
+
+return (
+<div style={{
+      border: '2px solid #ddd',
+      padding: '1.5rem',
+      borderRadius: '8px',
+      backgroundColor: '#f9f9f9',
+      marginTop: '1rem'
+    }}>
+<div style={{
+        display: 'flex',
+        gap: '2rem',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start'
+      }}>
+{/* Color Preview */}
+<div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '0.5rem'
+        }}>
+<div style={{
+            width: '150px',
+            height: '150px',
+            backgroundColor: rgbColor,
+            border: '3px solid #333',
+            borderRadius: '8px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+          }}></div>
+<code style={{
+            fontSize: '1.1rem',
+            fontWeight: 'bold',
+            color: '#333'
+          }}>
+RGB({red}, {green}, {blue})
+</code>
+</div>
+
+        {/* Sliders */}
+        <div style={{
+          flex: 1,
+          minWidth: '250px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem'
+        }}>
+          {/* Red Slider */}
+          <div>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontWeight: 'bold',
+              color: '#d32f2f'
+            }}>
+              Piros (Red): {red}
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="255"
+              value={red}
+              onChange={(e) => setRed(parseInt(e.target.value))}
+              style={{
+                width: '100%',
+                height: '8px',
+                accentColor: '#d32f2f',
+                cursor: 'pointer'
+              }}
+            />
+          </div>
+
+          {/* Green Slider */}
+          <div>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontWeight: 'bold',
+              color: '#388e3c'
+            }}>
+              Zöld (Green): {green}
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="255"
+              value={green}
+              onChange={(e) => setGreen(parseInt(e.target.value))}
+              style={{
+                width: '100%',
+                height: '8px',
+                accentColor: '#388e3c',
+                cursor: 'pointer'
+              }}
+            />
+          </div>
+
+          {/* Blue Slider */}
+          <div>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontWeight: 'bold',
+              color: '#1976d2'
+            }}>
+              Kék (Blue): {blue}
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="255"
+              value={blue}
+              onChange={(e) => setBlue(parseInt(e.target.value))}
+              style={{
+                width: '100%',
+                height: '8px',
+                accentColor: '#1976d2',
+                cursor: 'pointer'
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+);
+}
 
 <section>
 
@@ -135,6 +404,7 @@ Itt minden képkockában (frame) elmozdítjuk az objektumot:
 # Mi az a Sprite?
 
 A Sprite egy olyan objektum, ami:
+
 - Képet tartalmaz (lehet beépített vagy saját)
 - Pozícióval rendelkezik (rect tulajdonság)
 - Mozgatható (update() metódussal)
