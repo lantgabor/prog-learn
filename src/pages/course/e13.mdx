@@ -1,4 +1,5 @@
 import ColorPicker from "./colorPicker.jsx";
+import { FrameByFrameDemo } from "./motionAnimation.jsx";
 
 <section>
 <>{new Date("12/11/2025").toLocaleDateString()}</>
@@ -67,6 +68,81 @@ while fut:
 pygame.quit()
 ```
 
+### PyGame ablak és felületek (Surfaces)
+
+A PyGame-ben minden grafikai elem egy **Surface** (felület) objektumon jelenik meg:
+
+#### **Ablak létrehozása**
+
+```python
+ablak = pygame.display.set_mode((szélesség, magasság))
+```
+
+- Az ablak maga is egy Surface objektum
+- Ez a fő felület, ahova rajzolunk
+- A `(800, 600)` azt jelenti, hogy 800 pixel széles és 600 pixel magas lesz
+
+#### **Ablak címének beállítása**
+
+```python
+pygame.display.set_caption("Játék címe")
+```
+
+Ez az operációs rendszer ablakának felső részén jelenik meg.
+
+#### **Képernyő frissítése**
+
+```python
+pygame.display.flip()
+```
+
+- Frissíti a teljes képernyőt
+- A rajzolás csak ezután válik láthatóvá
+- Minden frame végén meg kell hívni
+
+Alternatíva:
+```python
+pygame.display.update()  # Csak bizonyos részeket frissít
+```
+
+#### **Képernyő törlése**
+
+```python
+ablak.fill((255, 255, 255))  # RGB szín
+```
+
+- Kitölti az egész ablakot egy színnel
+- Általában minden frame elején meghívjuk
+- Így "törölhetjük" az előző frame rajzait
+
+#### **A játék ciklus (Game Loop)**
+
+Minden játéknak van egy fő ciklusa:
+
+1. **Események kezelése** - Billentyűzet, egér, stb.
+2. **Játéklogika frissítése** - Pozíciók, ütközések számítása
+3. **Képernyő rajzolása** - Grafikák megjelenítése
+4. **Képernyő frissítése** - A változások láthatóvá tétele
+
+```python
+while fut:
+    # 1. Események
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    # 2. Logika
+    x += sebesség_x
+    y += sebesség_y
+
+    # 3. Rajzolás
+    ablak.fill((255, 255, 255))
+    pygame.draw.circle(ablak, (255, 0, 0), (x, y), 20)
+
+    # 4. Frissítés
+    pygame.display.flip()
+```
+
 ## Alakzatok rajzolása
 
 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
@@ -132,7 +208,7 @@ pygame.draw.rect(ablak, (255, 0, 0), (100, 100, 50, 30))
 <div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 <svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
-  <rect width="200" height="200" fill="#f5f5f5"/>
+  <rect width="200" height="200" fill="#ffffff"/>
   <rect x="50" y="50" width="50" height="30" fill="#ff0000"/>
 </svg>
 
@@ -153,7 +229,7 @@ pygame.draw.circle(ablak, (0, 255, 0), (400, 300), 40)
 <div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 <svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
-  <rect width="200" height="200" fill="#f5f5f5"/>
+  <rect width="200" height="200" fill="#ffffff"/>
   <circle cx="100" cy="100" r="40" fill="#00ff00"/>
 </svg>
 
@@ -174,7 +250,7 @@ pygame.draw.line(ablak, (0, 0, 255), (100, 100), (200, 200), 3)
 <div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 <svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
-  <rect width="200" height="200" fill="#f5f5f5"/>
+  <rect width="200" height="200" fill="#ffffff"/>
   <line x1="50" y1="50" x2="150" y2="150" stroke="#0000ff" strokeWidth="3"/>
 </svg>
 
@@ -195,7 +271,7 @@ pygame.draw.polygon(ablak, (255, 0, 255), pontok)
 <div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 <svg width="200" height="200" viewBox="0 0 200 200" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
-  <rect width="200" height="200" fill="#f5f5f5"/>
+  <rect width="200" height="200" fill="#ffffff"/>
   <polygon points="50,50 100,50 75,120" fill="#ff00ff"/>
 </svg>
 
@@ -216,7 +292,7 @@ pygame.draw.ellipse(ablak, (100, 100, 255), (50, 50, 100, 200))
 <div style={{ flex: 1, minWidth: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 <svg width="200" height="250" viewBox="0 0 200 250" style={{ border: '1px solid #ccc', borderRadius: '4px' }}>
-  <rect width="200" height="250" fill="#f5f5f5"/>
+  <rect width="200" height="250" fill="#ffffff"/>
   <ellipse cx="100" cy="125" rx="50" ry="100" fill="#6464ff"/>
 </svg>
 
@@ -228,38 +304,536 @@ Az összes rajzolási függvény közös paraméterei:
 - **szín**: RGB érték (piros, zöld, kék komponensek 0-255 között)
 - **pozíció és méret**: a képernyőn való elhelyezkedés
 
+# Események kezelése (Events)
+
+A PyGame események rendszere lehetővé teszi, hogy reagáljunk a felhasználói interakciókra, mint például billentyűzet leütések, egér kattintások és mozgások.
+
+## Alapvető eseménykezelés
+
+```python
+for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+        fut = False
+    elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+            print("Szóköz lenyomva!")
+    elif event.type == pygame.MOUSEBUTTONDOWN:
+        print(f"Egér kattintás: {event.pos}")
+```
+
+### **Gyakori eseménytípusok:**
+
+- `pygame.QUIT` - Ablak bezárása
+- `pygame.KEYDOWN` - Billentyű lenyomása
+- `pygame.KEYUP` - Billentyű felengedése
+- `pygame.MOUSEBUTTONDOWN` - Egérgomb lenyomása
+- `pygame.MOUSEBUTTONUP` - Egérgomb felengedése
+- `pygame.MOUSEMOTION` - Egér mozgatása
+
+## Egér események
+
+### **Egér pozíció lekérdezése**
+
+```python
+# Aktuális egér pozíció
+x, y = pygame.mouse.get_pos()
+print(f"Egér pozíció: ({x}, {y})")
+```
+
+### **Egérgomb állapot**
+
+```python
+# Mely gombok vannak lenyomva
+gombok = pygame.mouse.get_pressed()
+if gombok[0]:  # Bal gomb
+    print("Bal gomb lenyomva")
+if gombok[2]:  # Jobb gomb
+    print("Jobb gomb lenyomva")
+```
+
+## Rajzolás egér kattintásra
+
+<div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: 1.5, minWidth: '400px' }}>
+
+### **Példa: Körök rajzolása kattintásra**
+
+```python
+import pygame
+pygame.init()
+
+ablak = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Rajzolj kattintással!")
+
+# Körök listája (x, y, szín)
+korok = []
+
+fut = True
+while fut:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # Bal gomb kattintás
+            if event.button == 1:
+                x, y = event.pos
+                szin = (255, 0, 0)  # Piros
+                korok.append((x, y, szin))
+            # Jobb gomb kattintás
+            elif event.button == 3:
+                x, y = event.pos
+                szin = (0, 0, 255)  # Kék
+                korok.append((x, y, szin))
+
+    # Képernyő törlése
+    ablak.fill((255, 255, 255))
+
+    # Összes kör rajzolása
+    for x, y, szin in korok:
+        pygame.draw.circle(ablak, szin, (x, y), 20)
+
+    pygame.display.flip()
+
+pygame.quit()
+```
+
+</div>
+<div style={{ flex: 1, minWidth: '300px' }}>
+
+### **Működés:**
+
+1. **Bal gomb kattintás** → Piros kör
+2. **Jobb gomb kattintás** → Kék kör
+3. Az `event.pos` megadja a kattintás pozícióját
+4. A körök egy listában tárolódnak
+5. Minden frame-ben újrarajzoljuk az összes kört
+
+### **Event tulajdonságok:**
+
+**MOUSEBUTTONDOWN eseménynél:**
+- `event.pos` - (x, y) koordináták
+- `event.button` - Melyik gomb (1=bal, 2=középső, 3=jobb)
+
+**MOUSEMOTION eseménynél:**
+- `event.pos` - Aktuális pozíció
+- `event.rel` - Relatív mozgás (dx, dy)
+- `event.buttons` - Mely gombok vannak lenyomva
+
+</div>
+</div>
+
+### **Példa: Rajzolás húzással**
+
+```python
+import pygame
+pygame.init()
+
+ablak = pygame.display.set_mode((800, 600))
+rajzol = False  # Éppen rajzolunk-e
+
+pontok = []
+
+fut = True
+while fut:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            rajzol = True
+        elif event.type == pygame.MOUSEBUTTONUP:
+            rajzol = False
+        elif event.type == pygame.MOUSEMOTION:
+            if rajzol:
+                pontok.append(event.pos)
+
+    ablak.fill((255, 255, 255))
+
+    # Vonalak rajzolása a pontok között
+    if len(pontok) > 1:
+        pygame.draw.lines(ablak, (0, 0, 0), False, pontok, 3)
+
+    pygame.display.flip()
+
+pygame.quit()
+```
+
 
 ## Mozgatás és animáció
 
-Objektum mozgatása billentyűzettel:
+### Mi az animáció?
+
+Az animáció valójában egy **illúzió**! Amikor filmeket vagy játékokat nézünk, valójában sok-sok állóképet látunk gyors egymásutánban. Az emberi szem és agy ezeket a képeket összeolvasztja, és folyamatos mozgást érzékel.
+
+**Alapfogalmak:**
+- **Frame (képkocka):** Egy egyedi állókép az animációban
+- **FPS (Frames Per Second):** Másodpercenként hány képkockát látunk
+  - Film: általában 24 FPS
+  - Játékok: 30, 60 vagy akár 144 FPS
+  - PyGame: tipikusan 60 FPS
+
+<FrameByFrameDemo />
+
+### A fizika alapjai: Pozíció, Sebesség, Gyorsulás
+
+A számítógépes animációban a fizika alapelveit használjuk a mozgás szimulálására. Három alapvető fogalmat kell megérteni:
+
+#### **1. Pozíció (Position) - $x$**
+
+A pozíció megmondja, **hol van** az objektum a képernyőn.
 
 ```python
-# Globális változók
-x = 400  # pozíció x
-y = 300  # pozíció y
-sebesseg = 5
-
-# Játék ciklusban:
-keys = pygame.key.get_pressed()
-if keys[pygame.K_LEFT]:
-    x -= sebesseg
-if keys[pygame.K_RIGHT]:
-    x += sebesseg
-if keys[pygame.K_UP]:
-    y -= sebesseg
-if keys[pygame.K_DOWN]:
-    y += sebesseg
-
-# Rajzolás az új pozícióra
-pygame.draw.circle(ablak, (255, 0, 0), (x, y), 20)
+x = 100  # A kör 100 pixel távolságra van a bal széltől
+y = 200  # A kör 200 pixel távolságra van a tetejétől
 ```
 
-A mozgás a fizikai sebesség = elmozdulás/idő elvén alapul
-Itt minden képkockában (frame) elmozdítjuk az objektumot:
+- Mértékegység: **pixel**
+- Típus: koordináta pár $(x, y)$
 
-- $x += sebesseg \rightarrow \Delta x = v \* \Delta t $ (ahol $\Delta t $ = 1 frame)
-- Egyenletes mozgás: állandó sebesség
-- Gyorsulás: növekvő sebesség (sebesseg += gyorsulas)
+#### **2. Sebesség (Velocity) - $v$**
+
+A sebesség megmondja, **milyen gyorsan és milyen irányba** mozog az objektum.
+
+$$v = \frac{\Delta x}{\Delta t}$$
+
+Ahol:
+- $v$ = sebesség (velocity)
+- $\Delta x$ = elmozdulás (change in position)
+- $\Delta t$ = eltelt idő (change in time)
+
+```python
+sebesség = 5  # 5 pixel mozgás minden frame-ben
+
+# Minden frame-ben:
+x = x + sebesség  # vagy rövidebben: x += sebesség
+```
+
+Ha a sebesség **pozitív**, jobbra mozog. Ha **negatív**, balra mozog.
+
+**Példa számítás:**
+
+Ha egy objektum 100 pixelről 150 pixelre mozog 10 frame alatt:
+
+$$v = \frac{\Delta x}{\Delta t} = \frac{150 - 100}{10} = \frac{50}{10} = 5 \text{ pixel/frame}$$
+
+#### **3. Gyorsulás (Acceleration) - $a$**
+
+A gyorsulás megmondja, **milyen gyorsan változik a sebesség**.
+
+$$a = \frac{\Delta v}{\Delta t}$$
+
+Ahol:
+- $a$ = gyorsulás (acceleration)
+- $\Delta v$ = sebességváltozás (change in velocity)
+- $\Delta t$ = eltelt idő (change in time)
+
+```python
+gyorsulás = 0.5  # Minden frame-ben 0.5 pixel/frame-mel nő a sebesség
+sebesség = 0     # Kezdetben áll
+
+# Minden frame-ben:
+sebesség = sebesség + gyorsulás  # sebesség += gyorsulás
+x = x + sebesség                  # x += sebesség
+```
+
+**Példa számítás:**
+
+Ha egy autó sebessége 0-ról 50 pixel/frame-re nő 10 frame alatt:
+
+$$a = \frac{\Delta v}{\Delta t} = \frac{50 - 0}{10} = \frac{50}{10} = 5 \text{ pixel/frame}^2$$
+
+### A mozgás matematikája PyGame-ben
+
+#### **Egyenletes mozgás (Konstant sebesség)**
+
+Amikor a sebesség állandó (nem változik):
+
+**Matematikai képlet:**
+
+$$x_{új} = x_{régi} + v \cdot \Delta t$$
+
+**PyGame kódban:**
+
+```python
+import pygame
+pygame.init()
+
+ablak = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+
+# Kezdeti értékek
+x = 100
+y = 300
+sebesség_x = 3  # pixel/frame
+sebesség_y = 0
+
+fut = True
+while fut:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    # MOZGÁS SZÁMÍTÁSA - Egyenletes mozgás
+    x += sebesség_x  # x = x + sebesség_x
+    y += sebesség_y  # y = y + sebesség_y
+
+    # Ha eléri a jobb szélt, visszaugrik
+    if x > 800:
+        x = 0
+
+    # Rajzolás
+    ablak.fill((255, 255, 255))
+    pygame.draw.circle(ablak, (255, 0, 0), (int(x), int(y)), 20)
+
+    pygame.display.flip()
+    clock.tick(60)  # 60 FPS
+
+pygame.quit()
+```
+
+**Mit csinál minden frame-ben?**
+
+| Frame | x pozíció | Számítás |
+|-------|-----------|----------|
+| 0 | 100 | Kezdeti érték |
+| 1 | 103 | 100 + 3 = 103 |
+| 2 | 106 | 103 + 3 = 106 |
+| 3 | 109 | 106 + 3 = 109 |
+| 4 | 112 | 109 + 3 = 112 |
+| ... | ... | ... |
+
+#### **Gyorsuló mozgás (Változó sebesség)**
+
+Amikor a sebesség folyamatosan változik (például gravitáció miatt):
+
+**Matematikai képletek:**
+
+$$v_{új} = v_{régi} + a \cdot \Delta t$$
+
+$$x_{új} = x_{régi} + v_{új} \cdot \Delta t$$
+
+**PyGame kódban:**
+
+```python
+import pygame
+pygame.init()
+
+ablak = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+
+# Kezdeti értékek
+x = 400
+y = 100
+sebesség_x = 0
+sebesség_y = 0     # Kezdetben áll
+gyorsulás_y = 0.5  # "Gravitáció" lefelé
+
+fut = True
+while fut:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    # MOZGÁS SZÁMÍTÁSA - Gyorsuló mozgás
+    sebesség_y += gyorsulás_y  # Sebesség növekszik
+    y += sebesség_y            # Pozíció változik
+
+    # Ha leesik, visszaugrik
+    if y > 600:
+        y = 100
+        sebesség_y = 0
+
+    # Rajzolás
+    ablak.fill((255, 255, 255))
+    pygame.draw.circle(ablak, (0, 0, 255), (int(x), int(y)), 20)
+
+    pygame.display.flip()
+    clock.tick(60)  # 60 FPS
+
+pygame.quit()
+```
+
+**Mit csinál minden frame-ben?**
+
+| Frame | sebesség_y | y pozíció | Számítás |
+|-------|------------|-----------|----------|
+| 0 | 0.0 | 100.0 | Kezdeti értékek |
+| 1 | 0.5 | 100.5 | v = 0 + 0.5 = 0.5; y = 100 + 0.5 |
+| 2 | 1.0 | 101.5 | v = 0.5 + 0.5 = 1.0; y = 100.5 + 1.0 |
+| 3 | 1.5 | 103.0 | v = 1.0 + 0.5 = 1.5; y = 101.5 + 1.5 |
+| 4 | 2.0 | 105.0 | v = 1.5 + 0.5 = 2.0; y = 103.0 + 2.0 |
+| ... | ... | ... | Egyre gyorsabban esik! |
+
+**Figyeld meg:** A sebesség minden frame-ben nő, így az objektum egyre gyorsabban mozog!
+
+### Objektum mozgatása billentyűzettel
+
+Most nézzük meg, hogyan irányíthatunk egy objektumot a billentyűzettel:
+
+```python
+import pygame
+pygame.init()
+
+ablak = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+
+# Kezdeti pozíció
+x = 400
+y = 300
+sebesség = 5  # Mennyit mozdul egy gombnyomásra
+
+fut = True
+while fut:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    # Billentyűzet állapot lekérdezése
+    keys = pygame.key.get_pressed()
+
+    # Mozgatás a nyilakkal
+    if keys[pygame.K_LEFT]:
+        x -= sebesség  # Balra: x csökken
+    if keys[pygame.K_RIGHT]:
+        x += sebesség  # Jobbra: x nő
+    if keys[pygame.K_UP]:
+        y -= sebesség  # Fel: y csökken (emlékezz, y fentről lefelé nő!)
+    if keys[pygame.K_DOWN]:
+        y += sebesség  # Le: y nő
+
+    # Határok ellenőrzése (ne menjen ki a képernyőről)
+    if x < 20:
+        x = 20
+    if x > 780:
+        x = 780
+    if y < 20:
+        y = 20
+    if y > 580:
+        y = 580
+
+    # Rajzolás
+    ablak.fill((255, 255, 255))
+    pygame.draw.circle(ablak, (255, 0, 0), (int(x), int(y)), 20)
+
+    pygame.display.flip()
+    clock.tick(60)  # 60 FPS
+
+pygame.quit()
+```
+
+### Átlós mozgás - Vektor matematika
+
+Ha egyszerre jobbra ÉS fel nyomsz, az objektum **átlósan** mozog. Ez azért van, mert két irányban is változik a pozíció:
+
+```python
+# Ha egyszerre RIGHT és UP van lenyomva:
+x += sebesség  # x irányban +5
+y -= sebesség  # y irányban -5
+
+# Az eredő elmozdulás (Pitagorasz-tétel):
+# elmozdulás = √(5² + 5²) = √50 ≈ 7.07 pixel
+```
+
+**Matematikai magyarázat:**
+
+$$\text{teljes sebesség} = \sqrt{v_x^2 + v_y^2}$$
+
+Ha $v_x = 5$ és $v_y = 5$:
+
+$$v_{teljes} = \sqrt{5^2 + 5^2} = \sqrt{25 + 25} = \sqrt{50} \approx 7.07 \text{ pixel/frame}$$
+
+Így átlósan gyorsabban mozog! Ha ezt ki akarod egyenlíteni:
+
+```python
+import math
+
+sebesség = 5
+
+if keys[pygame.K_LEFT]:
+    x -= sebesség
+if keys[pygame.K_RIGHT]:
+    x += sebesség
+if keys[pygame.K_UP]:
+    y -= sebesség
+if keys[pygame.K_DOWN]:
+    y += sebesség
+
+# Normalizálás (hogy átlósan ne legyen gyorsabb)
+dx = 0
+dy = 0
+if keys[pygame.K_LEFT]:
+    dx -= 1
+if keys[pygame.K_RIGHT]:
+    dx += 1
+if keys[pygame.K_UP]:
+    dy -= 1
+if keys[pygame.K_DOWN]:
+    dy += 1
+
+# Ha mozog, normalizáljuk
+if dx != 0 or dy != 0:
+    hossz = math.sqrt(dx*dx + dy*dy)
+    dx = dx / hossz
+    dy = dy / hossz
+
+    x += dx * sebesség
+    y += dy * sebesség
+```
+
+### Sima mozgás vs. Frame-függő mozgás
+
+**Probléma:** Mi van, ha az FPS változik? Ha 30 FPS-en fut, fele olyan gyorsan mozog, mint 60 FPS-en!
+
+**Megoldás:** Delta time használata
+
+```python
+import pygame
+pygame.init()
+
+ablak = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+
+x = 100
+sebesség = 200  # pixel/másodperc (nem frame!)
+
+fut = True
+while fut:
+    # Delta time: eltelt idő az előző frame óta (másodpercben)
+    dt = clock.tick(60) / 1000.0  # milliszekundum → másodperc
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fut = False
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_RIGHT]:
+        x += sebesség * dt  # pixel/sec * sec = pixel
+
+    ablak.fill((255, 255, 255))
+    pygame.draw.circle(ablak, (255, 0, 0), (int(x), int(y)), 20)
+    pygame.display.flip()
+
+pygame.quit()
+```
+
+**Magyarázat:**
+
+- Ha FPS = 60: `dt = 1/60 ≈ 0.0167` másodperc/frame
+- Mozgás: `200 * 0.0167 ≈ 3.33` pixel/frame
+- Ha FPS = 30: `dt = 1/30 ≈ 0.0333` másodperc/frame
+- Mozgás: `200 * 0.0333 ≈ 6.67` pixel/frame
+
+Így **minden esetben** 200 pixel/másodperc sebességgel mozog, függetlenül az FPS-től!
+
+### Összefoglalás
+
+| Fogalom | Képlet | PyGame kód | Mit jelent? |
+|---------|--------|------------|-------------|
+| **Pozíció** | $x, y$ | `x = 100` | Hol van az objektum |
+| **Sebesség** | $v = \frac{\Delta x}{\Delta t}$ | `x += v` | Milyen gyorsan mozog |
+| **Gyorsulás** | $a = \frac{\Delta v}{\Delta t}$ | `v += a; x += v` | Milyen gyorsan változik a sebesség |
+| **Delta Time** | $\Delta t$ | `dt = clock.tick(60) / 1000.0` | Eltelt idő frame-ek között |
+
+**Alapszabály:** Az animáció nem más, mint apró változások gyors sorozata, amit a szemünk folyamatos mozgásként érzékel!
 
 </section>
 
