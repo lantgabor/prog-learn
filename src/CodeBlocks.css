@@ -1,24 +1,29 @@
+
 @font-face {
-    font-family: 'Fira Code';
-    src: url('/fonts/FiraCode-VariableFont_wght.ttf') format('truetype'),
+    font-family: "Fira Code";
+    src: url("/fonts/FiraCode-VariableFont_wght.ttf") format("truetype");
 }
 
 code {
     font-variant-ligatures: none;
-    font-family: 'Fira Code', Menlo, Monaco, "Courier New", monospace;
+    word-break: break-word;
+    white-space: pre-wrap;
+    font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace;
 }
 
 pre {
-    background: #17253e;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    overflow-x: auto;
+    border: 2px solid var(--tokyonight-blue);
+    background-color: #232635;
+    padding: 1em;
+    overflow-x: scroll;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-pre code {
-    background: #17253e;
+pre
+code {
     color: rgba(255, 255, 255, 0.95);
-    font-family: 'Fira Code', Menlo, Monaco, "Courier New", monospace;
+    font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace;
 }
 
 /* This is a theme distributed by `starry-night`.
