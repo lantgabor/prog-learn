@@ -1,4 +1,5 @@
 import pygame
+
 pygame.init()
 
 ablak = pygame.display.set_mode((800, 600))
@@ -27,8 +28,7 @@ while fut:
 
     # Rajzolás
     ablak.fill((255, 255, 255))
-    pygame.draw.circle(ablak, (255, 0, 0),
-        (x, y), 20)
+    pygame.draw.circle(ablak, (255, 0, 0), (x, y), 20)
     pygame.display.flip()
 
     clock.tick(60)

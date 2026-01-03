@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 class Jatekos(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -21,6 +22,7 @@ class Jatekos(pygame.sprite.Sprite):
         if keys[pygame.K_DOWN]:
             self.rect.y += 5
 
+
 class Erme(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -29,6 +31,7 @@ class Erme(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(780)
         self.rect.y = random.randrange(580)
+
 
 pygame.init()
 ablak = pygame.display.set_mode((800, 600))
@@ -54,8 +57,7 @@ while fut:
 
     all_sprites.update()
 
-    talalatok = pygame.sprite.spritecollide(
-        jatekos, ermek, True)
+    talalatok = pygame.sprite.spritecollide(jatekos, ermek, True)
     pontszam += len(talalatok)
 
     ablak.fill((255, 255, 255))
@@ -63,8 +65,7 @@ while fut:
 
     # Pontszám kiírása
     font = pygame.font.Font(None, 36)
-    szoveg = font.render(f'Pontok: {pontszam}',
-        True, (0, 0, 0))
+    szoveg = font.render(f"Pontok: {pontszam}", True, (0, 0, 0))
     ablak.blit(szoveg, (10, 10))
 
     pygame.display.flip()

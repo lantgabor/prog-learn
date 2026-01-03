@@ -1,4 +1,5 @@
 import pygame
+
 pygame.init()
 
 ablak = pygame.display.set_mode((800, 600))

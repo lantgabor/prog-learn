@@ -1,4 +1,5 @@
 import pygame
+
 pygame.init()
 
 # Ablak létrehozása
@@ -16,11 +17,9 @@ while fut:
     # Képernyő törlése
     ablak.fill((255, 255, 255))  # Fehér háttér
 
-    pygame.draw.rect(ablak, (255, 0, 0),
-        (100, 100, 50, 30))
+    pygame.draw.rect(ablak, (255, 0, 0), (100, 100, 50, 30))
 
-    pygame.draw.circle(ablak, (0, 255, 0),
-        (400, 300), 40)
+    pygame.draw.circle(ablak, (0, 255, 0), (400, 300), 40)
 
     pontok = [(100, 100), (200, 100), (150, 200)]
     pygame.draw.polygon(ablak, (255, 0, 255), pontok)

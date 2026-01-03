@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 class Snake:
     def __init__(self):
         self.x = 0
@@ -11,7 +12,7 @@ class Snake:
         self.tail = []
 
     def eat(self, pos):
-        d = ((self.x - pos[0])**2 + (self.y - pos[1])**2)**0.5
+        d = ((self.x - pos[0]) ** 2 + (self.y - pos[1]) ** 2) ** 0.5
         if d < 1:
             self.total += 1
             return True
@@ -24,9 +25,9 @@ class Snake:
 
     def death(self):
         for pos in self.tail:
-            d = ((self.x - pos[0])**2 + (self.y - pos[1])**2)**0.5
+            d = ((self.x - pos[0]) ** 2 + (self.y - pos[1]) ** 2) ** 0.5
             if d < 1:
-                print('starting over')
+                print("starting over")
                 self.total = 0
                 self.tail = []
                 return True
@@ -50,13 +51,15 @@ class Snake:
 
     def show(self, screen, scl):
         for i in range(len(self.tail)):
-            pygame.draw.rect(screen, (255, 255, 255), (self.tail[i][0], self.tail[i][1], scl, scl))
+            pygame.draw.rect(
+                screen, (255, 255, 255), (self.tail[i][0], self.tail[i][1], scl, scl)
+            )
         pygame.draw.rect(screen, (255, 255, 255), (self.x, self.y, scl, scl))
 
 
 def pick_location(width, height, scl):
-    cols = width // scl # number of columns W/scale
-    rows = height // scl # number of rows H/scale
+    cols = width // scl  # number of columns W/scale
+    rows = height // scl  # number of rows H/scale
     food_x = random.randint(0, cols - 1) * scl
     food_y = random.randint(0, rows - 1) * scl
     return (food_x, food_y)
