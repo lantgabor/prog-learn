@@ -1,0 +1,45 @@
+---
+title: "Hello – Markdown példák"
+draft: false
+---
+
+# Heading (rank 1)
+## Heading 2
+### 3
+#### 4
+##### 5
+###### 6
+
+> Block quote
+> next
+> next
+
+* Unordered
+* List
+
+1. Ordered
+2. List
+
+A paragraph, introducing a thematic break:
+
+---
+
+## Code
+
+```cpp
+int main(void) {
+  return 0;
+}
+
+class name {
+  int attr = 0;
+}
+```
+
+a [link](https://example.com),
+
+an image:
+
+![image](https://fastly.picsum.photos/id/1036/536/354.jpg?hmac=MZppqlNecU8f3qMzkhIugWYk900Qtwdll3SBktXtkVI)
+
+some *emphasis*, something **strong**, and finally a little `code()`.
